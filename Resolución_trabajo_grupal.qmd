@@ -59,7 +59,7 @@ A continuación, se aplican individualmente los criterios clásicos de decisión
 
 ## **Situación Favorable (Beneficios):**
 
-```{r} 
+```{r}
 criterio.Wald(tabla_m1, favorable=TRUE)
 criterio.Optimista(tabla_m1, favorable=TRUE)
 criterio.Hurwicz(tabla_m1, alfa=0.5, favorable=TRUE)
@@ -147,7 +147,7 @@ Para este problema, calcularemos primero los beneficios en función de las compr
 
 ## Construcción de la matriz de decisión
 
-```{r} 
+```{r}
 # Definimos los costes y precios
 coste_lote_m <- 50
 precio_venta_m <- 120
