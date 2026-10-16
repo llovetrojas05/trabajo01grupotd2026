@@ -513,6 +513,7 @@ d4 (Ed. Limitada)
 <section id="respuestas-verdaderas" class="level2">
 <h2 class="anchored" data-anchor-id="respuestas-verdaderas">Respuestas verdaderas</h2>
 <p>Las afirmaciones verdaderas del cuestionario son la <strong>1, la 3 y la 5</strong>.</p>
+<hr>
 </section>
 </section>
 <section id="problema-2-la-floristería-en-cádiz-solución-con-tabla-única" class="level1">
@@ -620,6 +621,845 @@ iAlt.Opt (fav.) d2 (200 lotes) d2 (200 lotes) d2 (200 lotes)</code></pre>
 <section id="respuestas-verdaderas-1" class="level2">
 <h2 class="anchored" data-anchor-id="respuestas-verdaderas-1">Respuestas verdaderas</h2>
 <p>Las afirmaciones verdaderas del cuestionario son la <strong>1 y la 4</strong>.</p>
+<hr>
+</section>
+</section>
+<section id="problemas-de-javier-ribelles-sánchez" class="level1">
+<h1>PROBLEMAS DE JAVIER RIBELLES SÁNCHEZ</h1>
+</section>
+<section id="problema-3-decisión-cinematográfica-óscar-2027" class="level1">
+<h1><em>Problema 3: Decisión cinematográfica Óscar 2027</em></h1>
+<p><strong>Contexto:</strong></p>
+<p>Una distribuidora cinematográfica dispone de un presupuesto extraordinario para promocionar una película durante la temporada de premios de los Óscar de 2027. Su objetivo es elegir la película en la que invertir ese presupuesto para obtener el mayor beneficio económico adicional.</p>
+<p>La distribuidora está considerando cuatro películas: <em>La Odisea</em>, <em>La bola negra</em>, <em>Fjord</em> y <em>Dune: Parte tres</em>. El caso es hipotético: no se presupone que estas películas estén nominadas a los Óscar ni que vayan a obtener determinados resultados.</p>
+<p>El beneficio adicional dependerá de la recepción de la película durante la temporada de premios. Se consideran tres posibles estados de la naturaleza:</p>
+<ul>
+<li><strong>Q1. Gran repercusión:</strong> la película genera una gran atención mediática y obtiene un reconocimiento destacado durante la temporada de premios.</li>
+<li><strong>Q2. Repercusión moderada:</strong> la película recibe cierta atención y reconocimiento, pero su impacto comercial es limitado.</li>
+<li><strong>Q3. Escasa repercusión:</strong> la película obtiene poca atención durante la temporada de premios y la inversión promocional produce resultados reducidos.</li>
+</ul>
+<p>La distribuidora ha elaborado las siguientes estimaciones hipotéticas del beneficio adicional neto, expresado en millones de euros:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Película</th>
+<th style="text-align: right;">Q1: Gran repercusión</th>
+<th style="text-align: right;">Q2: Repercusión moderada</th>
+<th style="text-align: right;">Q3: Escasa repercusión</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A1. La Odisea</td>
+<td style="text-align: right;">18</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">-4</td>
+</tr>
+<tr class="even">
+<td>A2. La bola negra</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="odd">
+<td>A3. Fjord</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">3</td>
+</tr>
+<tr class="even">
+<td>A4. Dune: Parte tres</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">-8</td>
+</tr>
+</tbody>
+</table>
+<p>Los valores negativos representan pérdidas adicionales derivadas de que la inversión promocional no se recupere.</p>
+<p>Se pide resolver el problema mediante los criterios de Wald, Optimista, Hurwicz (con k = 0,3), Savage, Laplace y Punto Ideal, utilizando las funciones proporcionadas en la asignatura. Se estudiarán las interpretaciones favorable y desfavorable previstas por dichas funciones.</p>
+<p>Esta es la tabla de decisión del problema.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>tablaX <span class="ot">&lt;-</span> <span class="fu">matrix</span>(</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="dv">18</span>, <span class="dv">8</span>, <span class="sc">-</span><span class="dv">4</span>,</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>    <span class="dv">12</span>, <span class="dv">9</span>, <span class="dv">1</span>,</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>    <span class="dv">10</span>, <span class="dv">7</span>, <span class="dv">3</span>,</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>    <span class="dv">20</span>, <span class="dv">5</span>, <span class="sc">-</span><span class="dv">8</span>),</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">nrow =</span> <span class="dv">4</span>,</span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">byrow =</span> <span class="cn">TRUE</span></span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(tablaX) <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a>  <span class="st">"A1. La Odisea"</span>,</span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a>  <span class="st">"A2. La bola negra"</span>,</span>
+<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a>  <span class="st">"A3. Fjord"</span>,</span>
+<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a>  <span class="st">"A4. Dune: Parte tres"</span></span>
+<span id="cb28-15"><a href="#cb28-15" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb28-16"><a href="#cb28-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-17"><a href="#cb28-17" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(tablaX) <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb28-18"><a href="#cb28-18" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Q1. Gran repercusión"</span>,</span>
+<span id="cb28-19"><a href="#cb28-19" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Q2. Repercusión moderada"</span>,</span>
+<span id="cb28-20"><a href="#cb28-20" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Q3. Escasa repercusión"</span></span>
+<span id="cb28-21"><a href="#cb28-21" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb28-22"><a href="#cb28-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-23"><a href="#cb28-23" aria-hidden="true" tabindex="-1"></a>tablaX</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                     Q1. Gran repercusión Q2. Repercusión moderada
+A1. La Odisea                          18                        8
+A2. La bola negra                      12                        9
+A3. Fjord                              10                        7
+A4. Dune: Parte tres                   20                        5
+                     Q3. Escasa repercusión
+A1. La Odisea                            -4
+A2. La bola negra                         1
+A3. Fjord                                 3
+A4. Dune: Parte tres                     -8</code></pre>
+</div>
+</div>
+<p><strong>Resolución mediante los criterios de decisión</strong></p>
+<section id="situación-favorable" class="level2">
+<h2 class="anchored" data-anchor-id="situación-favorable"><strong>Situación favorable</strong></h2>
+<p><strong>Criterio de Wald</strong></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">criterio.Wald</span>(tablaX, <span class="at">favorable =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$criterio
+[1] "Wald"
+
+$metodo
+[1] "favorable"
+
+$tablaX
+                     Q1. Gran repercusión Q2. Repercusión moderada
+A1. La Odisea                          18                        8
+A2. La bola negra                      12                        9
+A3. Fjord                              10                        7
+A4. Dune: Parte tres                   20                        5
+                     Q3. Escasa repercusión
+A1. La Odisea                            -4
+A2. La bola negra                         1
+A3. Fjord                                 3
+A4. Dune: Parte tres                     -8
+
+$ValorAlternativas
+       A1. La Odisea    A2. La bola negra            A3. Fjord 
+                  -4                    1                    3 
+A4. Dune: Parte tres 
+                  -8 
+
+$ValorOptimo
+[1] 3
+
+$AlternativaOptima
+A3. Fjord 
+        3 </code></pre>
+</div>
+</div>
+<p><strong>Criterio Optimista</strong></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">criterio.Optimista</span>(tablaX, <span class="at">favorable =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$criterio
+[1] "Optimista"
+
+$metodo
+[1] "favorable"
+
+$tablaX
+                     Q1. Gran repercusión Q2. Repercusión moderada
+A1. La Odisea                          18                        8
+A2. La bola negra                      12                        9
+A3. Fjord                              10                        7
+A4. Dune: Parte tres                   20                        5
+                     Q3. Escasa repercusión
+A1. La Odisea                            -4
+A2. La bola negra                         1
+A3. Fjord                                 3
+A4. Dune: Parte tres                     -8
+
+$ValorAlternativas
+       A1. La Odisea    A2. La bola negra            A3. Fjord 
+                  18                   12                   10 
+A4. Dune: Parte tres 
+                  20 
+
+$ValorOptimo
+[1] 20
+
+$AlternativaOptima
+A4. Dune: Parte tres 
+                   4 </code></pre>
+</div>
+</div>
+<p><strong>Criterio de Hurwicz</strong></p>
+<p>Se utiliza un coeficiente de optimismo k = 0,3.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">criterio.Hurwicz</span>(tablaX, <span class="at">alfa =</span> <span class="fl">0.3</span>, <span class="at">favorable =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$criterio
+[1] "Hurwicz"
+
+$alfa
+[1] 0.3
+
+$metodo
+[1] "favorable"
+
+$tablaX
+                     Q1. Gran repercusión Q2. Repercusión moderada
+A1. La Odisea                          18                        8
+A2. La bola negra                      12                        9
+A3. Fjord                              10                        7
+A4. Dune: Parte tres                   20                        5
+                     Q3. Escasa repercusión
+A1. La Odisea                            -4
+A2. La bola negra                         1
+A3. Fjord                                 3
+A4. Dune: Parte tres                     -8
+
+$ValorAlternativas
+       A1. La Odisea    A2. La bola negra            A3. Fjord 
+                 2.6                  4.3                  5.1 
+A4. Dune: Parte tres 
+                 0.4 
+
+$ValorOptimo
+[1] 5.1
+
+$AlternativaOptima
+A3. Fjord 
+        3 </code></pre>
+</div>
+</div>
+<p><strong>Criterio de Savage</strong></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">criterio.Savage</span>(tablaX, <span class="at">favorable =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$criterio
+[1] "Savage"
+
+$metodo
+[1] "favorable"
+
+$tablaX
+                     Q1. Gran repercusión Q2. Repercusión moderada
+A1. La Odisea                          18                        8
+A2. La bola negra                      12                        9
+A3. Fjord                              10                        7
+A4. Dune: Parte tres                   20                        5
+                     Q3. Escasa repercusión
+A1. La Odisea                            -4
+A2. La bola negra                         1
+A3. Fjord                                 3
+A4. Dune: Parte tres                     -8
+
+$Mejores
+    Q1. Gran repercusión Q2. Repercusión moderada   Q3. Escasa repercusión 
+                      20                        9                        3 
+
+$Pesos
+                     Q1. Gran repercusión Q2. Repercusión moderada
+A1. La Odisea                           2                        1
+A2. La bola negra                       8                        0
+A3. Fjord                              10                        2
+A4. Dune: Parte tres                    0                        4
+                     Q3. Escasa repercusión
+A1. La Odisea                             7
+A2. La bola negra                         2
+A3. Fjord                                 0
+A4. Dune: Parte tres                     11
+
+$ValorAlternativas
+       A1. La Odisea    A2. La bola negra            A3. Fjord 
+                   7                    8                   10 
+A4. Dune: Parte tres 
+                  11 
+
+$ValorOptimo
+[1] 7
+
+$AlternativaOptima
+A1. La Odisea 
+            1 </code></pre>
+</div>
+</div>
+<p><strong>Criterio de Laplace</strong></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">criterio.Laplace</span>(tablaX, <span class="at">favorable =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$criterio
+[1] "Laplace"
+
+$metodo
+[1] "favorable"
+
+$tablaX
+                     Q1. Gran repercusión Q2. Repercusión moderada
+A1. La Odisea                          18                        8
+A2. La bola negra                      12                        9
+A3. Fjord                              10                        7
+A4. Dune: Parte tres                   20                        5
+                     Q3. Escasa repercusión
+A1. La Odisea                            -4
+A2. La bola negra                         1
+A3. Fjord                                 3
+A4. Dune: Parte tres                     -8
+
+$ValorAlternativas
+       A1. La Odisea    A2. La bola negra            A3. Fjord 
+            7.333333             7.333333             6.666667 
+A4. Dune: Parte tres 
+            5.666667 
+
+$ValorOptimo
+[1] 7.333333
+
+$AlternativaOptima
+    A1. La Odisea A2. La bola negra 
+                1                 2 </code></pre>
+</div>
+</div>
+<p><strong>Criterio del Punto Ideal</strong></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">criterio.PuntoIdeal</span>(tablaX, <span class="at">favorable =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$criterio
+[1] "Punto Ideal"
+
+$metodo
+[1] "favorable"
+
+$tablaX
+                     Q1. Gran repercusión Q2. Repercusión moderada
+A1. La Odisea                          18                        8
+A2. La bola negra                      12                        9
+A3. Fjord                              10                        7
+A4. Dune: Parte tres                   20                        5
+                     Q3. Escasa repercusión
+A1. La Odisea                            -4
+A2. La bola negra                         1
+A3. Fjord                                 3
+A4. Dune: Parte tres                     -8
+
+$Mejores
+    Q1. Gran repercusión Q2. Repercusión moderada   Q3. Escasa repercusión 
+                      20                        9                        3 
+
+$ValorAlternativas
+       A1. La Odisea    A2. La bola negra            A3. Fjord 
+            7.348469             8.246211            10.198039 
+A4. Dune: Parte tres 
+           11.704700 
+
+$ValorOptimo
+[1] 7.348469
+
+$AlternativaOptima
+A1. La Odisea 
+            1 </code></pre>
+</div>
+</div>
+</section>
+<section id="situación-desfavorable" class="level2">
+<h2 class="anchored" data-anchor-id="situación-desfavorable"><strong>Situación desfavorable</strong></h2>
+<p><strong>Criterio de Wald</strong></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">criterio.Wald</span>(tablaX, <span class="at">favorable =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$criterio
+[1] "Wald"
+
+$metodo
+[1] "desfavorable"
+
+$tablaX
+                     Q1. Gran repercusión Q2. Repercusión moderada
+A1. La Odisea                          18                        8
+A2. La bola negra                      12                        9
+A3. Fjord                              10                        7
+A4. Dune: Parte tres                   20                        5
+                     Q3. Escasa repercusión
+A1. La Odisea                            -4
+A2. La bola negra                         1
+A3. Fjord                                 3
+A4. Dune: Parte tres                     -8
+
+$ValorAlternativas
+       A1. La Odisea    A2. La bola negra            A3. Fjord 
+                  18                   12                   10 
+A4. Dune: Parte tres 
+                  20 
+
+$ValorOptimo
+[1] 10
+
+$AlternativaOptima
+A3. Fjord 
+        3 </code></pre>
+</div>
+</div>
+<p><strong>Criterio Optimista</strong></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">criterio.Optimista</span>(tablaX, <span class="at">favorable =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$criterio
+[1] "Optimista"
+
+$metodo
+[1] "desfavorable"
+
+$tablaX
+                     Q1. Gran repercusión Q2. Repercusión moderada
+A1. La Odisea                          18                        8
+A2. La bola negra                      12                        9
+A3. Fjord                              10                        7
+A4. Dune: Parte tres                   20                        5
+                     Q3. Escasa repercusión
+A1. La Odisea                            -4
+A2. La bola negra                         1
+A3. Fjord                                 3
+A4. Dune: Parte tres                     -8
+
+$ValorAlternativas
+       A1. La Odisea    A2. La bola negra            A3. Fjord 
+                  -4                    1                    3 
+A4. Dune: Parte tres 
+                  -8 
+
+$ValorOptimo
+[1] -8
+
+$AlternativaOptima
+A4. Dune: Parte tres 
+                   4 </code></pre>
+</div>
+</div>
+<p><strong>Criterio de Hurwicz</strong></p>
+<p>Se utiliza un coeficiente de optimismo k= 0,3.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">criterio.Hurwicz</span>(tablaX, <span class="at">alfa =</span> <span class="fl">0.3</span>, <span class="at">favorable =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$criterio
+[1] "Hurwicz"
+
+$alfa
+[1] 0.3
+
+$metodo
+[1] "desfavorable"
+
+$tablaX
+                     Q1. Gran repercusión Q2. Repercusión moderada
+A1. La Odisea                          18                        8
+A2. La bola negra                      12                        9
+A3. Fjord                              10                        7
+A4. Dune: Parte tres                   20                        5
+                     Q3. Escasa repercusión
+A1. La Odisea                            -4
+A2. La bola negra                         1
+A3. Fjord                                 3
+A4. Dune: Parte tres                     -8
+
+$ValorAlternativas
+       A1. La Odisea    A2. La bola negra            A3. Fjord 
+                11.4                  8.7                  7.9 
+A4. Dune: Parte tres 
+                11.6 
+
+$ValorOptimo
+[1] 7.9
+
+$AlternativaOptima
+A3. Fjord 
+        3 </code></pre>
+</div>
+</div>
+<p><strong>Criterio de Savage</strong></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">criterio.Savage</span>(tablaX, <span class="at">favorable =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$criterio
+[1] "Savage"
+
+$metodo
+[1] "desfavorable"
+
+$tablaX
+                     Q1. Gran repercusión Q2. Repercusión moderada
+A1. La Odisea                          18                        8
+A2. La bola negra                      12                        9
+A3. Fjord                              10                        7
+A4. Dune: Parte tres                   20                        5
+                     Q3. Escasa repercusión
+A1. La Odisea                            -4
+A2. La bola negra                         1
+A3. Fjord                                 3
+A4. Dune: Parte tres                     -8
+
+$Mejores
+    Q1. Gran repercusión Q2. Repercusión moderada   Q3. Escasa repercusión 
+                      10                        5                       -8 
+
+$Pesos
+                     Q1. Gran repercusión Q2. Repercusión moderada
+A1. La Odisea                           8                        3
+A2. La bola negra                       2                        4
+A3. Fjord                               0                        2
+A4. Dune: Parte tres                   10                        0
+                     Q3. Escasa repercusión
+A1. La Odisea                             4
+A2. La bola negra                         9
+A3. Fjord                                11
+A4. Dune: Parte tres                      0
+
+$ValorAlternativas
+       A1. La Odisea    A2. La bola negra            A3. Fjord 
+                   8                    9                   11 
+A4. Dune: Parte tres 
+                  10 
+
+$ValorOptimo
+[1] 8
+
+$AlternativaOptima
+A1. La Odisea 
+            1 </code></pre>
+</div>
+</div>
+<p><strong>Criterio de Laplace</strong></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">criterio.Laplace</span>(tablaX, <span class="at">favorable =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$criterio
+[1] "Laplace"
+
+$metodo
+[1] "desfavorable"
+
+$tablaX
+                     Q1. Gran repercusión Q2. Repercusión moderada
+A1. La Odisea                          18                        8
+A2. La bola negra                      12                        9
+A3. Fjord                              10                        7
+A4. Dune: Parte tres                   20                        5
+                     Q3. Escasa repercusión
+A1. La Odisea                            -4
+A2. La bola negra                         1
+A3. Fjord                                 3
+A4. Dune: Parte tres                     -8
+
+$ValorAlternativas
+       A1. La Odisea    A2. La bola negra            A3. Fjord 
+            7.333333             7.333333             6.666667 
+A4. Dune: Parte tres 
+            5.666667 
+
+$ValorOptimo
+[1] 5.666667
+
+$AlternativaOptima
+A4. Dune: Parte tres 
+                   4 </code></pre>
+</div>
+</div>
+<p><strong>Criterio del Punto Ideal</strong></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">criterio.PuntoIdeal</span>(tablaX, <span class="at">favorable =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$criterio
+[1] "Punto Ideal"
+
+$metodo
+[1] "desfavorable"
+
+$tablaX
+                     Q1. Gran repercusión Q2. Repercusión moderada
+A1. La Odisea                          18                        8
+A2. La bola negra                      12                        9
+A3. Fjord                              10                        7
+A4. Dune: Parte tres                   20                        5
+                     Q3. Escasa repercusión
+A1. La Odisea                            -4
+A2. La bola negra                         1
+A3. Fjord                                 3
+A4. Dune: Parte tres                     -8
+
+$Mejores
+    Q1. Gran repercusión Q2. Repercusión moderada   Q3. Escasa repercusión 
+                      10                        5                       -8 
+
+$ValorAlternativas
+       A1. La Odisea    A2. La bola negra            A3. Fjord 
+            9.433981            10.049876            11.180340 
+A4. Dune: Parte tres 
+           10.000000 
+
+$ValorOptimo
+[1] 9.433981
+
+$AlternativaOptima
+A1. La Odisea 
+            1 </code></pre>
+</div>
+</div>
+</section>
+<section id="cuestionario-verdaderofalso-problema-3" class="level2">
+<h2 class="anchored" data-anchor-id="cuestionario-verdaderofalso-problema-3"><strong>Cuestionario Verdadero/Falso (Problema 3):</strong></h2>
+<ol type="1">
+<li><p><strong>Verdadera.</strong> A1. La Odisea tiene un beneficio de -4 millones de euros en Q3.</p></li>
+<li><p><strong>Verdadera.</strong> A4. Dune: Parte tres alcanza el mayor beneficio posible de la tabla, con 20 millones de euros en Q1.</p></li>
+<li><p><strong>Verdadera.</strong> El peor resultado de A3. Fjord es 3 millones de euros, superior al peor resultado de las demás alternativas.</p></li>
+<li><p><strong>Falsa.</strong> Según el criterio de Laplace, A1 (La Odisea) no es la única alternativa seleccionada, ya que empata con A2 (La bola negra) al obtener ambas un beneficio medio de aproximadamente 7,33 millones de euros.</p></li>
+<li><p><strong>Falsa.</strong> Según el criterio de Hurwicz, con un coeficiente de optimismo k = 0,3 en una situación favorable, la alternativa seleccionada es A3 (Fjord), con un valor de 5,1 millones de euros, superior a los 4,3 millones de A2 (La bola negra).</p></li>
+</ol>
+</section>
+<section id="respuestas-verdaderas-2" class="level2">
+<h2 class="anchored" data-anchor-id="respuestas-verdaderas-2">Respuestas verdaderas</h2>
+<p>Las afirmaciones verdaderas del cuestionario son la <strong>1, la 2 y la 3</strong>.</p>
+<hr>
+</section>
+</section>
+<section id="problema-4-decisión-de-salud-pública-sobre-el-control-del-oxycontin" class="level1">
+<h1><em>Problema 4: Decisión de salud pública sobre el control del OxyContin</em></h1>
+<p><strong>Contexto:</strong></p>
+<p>A finales de la década de 1990 y principios de los 2000, diversas agencias de salud pública se enfrentaron a la introducción y fuerte promoción comercial de nuevos analgésicos opioides, como el OxyContin. Para este problema basado en una situación real, nos situamos en la posición de un comité de un servicio regional de salud que debe establecer el protocolo oficial para la prescripción de este potente medicamento.</p>
+<p>El comité busca maximizar el “beneficio social neto”, una métrica que suma los beneficios derivados del alivio efectivo del dolor en la población y resta los graves costes sanitarios, sociales y económicos derivados de la adicción, sobredosis y desvío al mercado negro.</p>
+<p>El comité valora cuatro alternativas (protocolos):</p>
+<ul>
+<li><strong>A1. Prescripción generalizada (Laxa):</strong> Permitir a cualquier médico recetar el fármaco para dolores moderados y crónicos no oncológicos, tal y como sugería la campaña de la farmacéutica.</li>
+<li><strong>A2. Uso estrictamente oncológico:</strong> Restringir la prescripción exclusivamente a pacientes con cáncer terminal o dolor agudo postoperatorio severo en entorno hospitalario.</li>
+<li><strong>A3. Prescripción con control estricto:</strong> Permitir el uso para dolor crónico, pero exigiendo derivación a Unidades del Dolor, contratos terapéuticos, test de drogas regulares y seguimiento exhaustivo.</li>
+<li><strong>A4. Restricción total / Sustitución:</strong> Prohibir su inclusión en el vademécum regional, obligando a usar alternativas no opioides o analgésicos tradicionales menos potentes.</li>
+</ul>
+<p>El impacto final depende fundamentalmente de la respuesta poblacional y del potencial adictivo real del fármaco a largo plazo (estado de la naturaleza):</p>
+<ul>
+<li><strong>Q1. Baja tasa de adicción:</strong> El medicamento se usa mayoritariamente según lo prescrito y los casos de abuso son anecdóticos.</li>
+<li><strong>Q2. Adicción moderada:</strong> Existe un desvío moderado al mercado negro y una parte de los pacientes desarrolla dependencia que requiere tratamiento.</li>
+<li><strong>Q3. Adicción severa:</strong> Se desata una crisis epidémica de opioides con altos índices de mortalidad, crimen y colapso de los servicios de urgencias.</li>
+</ul>
+<p>La estimación del beneficio social neto (expresado en millones de euros, donde los valores negativos representan un desastre social y económico) es la siguiente:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Protocolo</th>
+<th style="text-align: right;">Q1: Baja adicción</th>
+<th style="text-align: right;">Q2: Adicción moderada</th>
+<th style="text-align: right;">Q3: Adicción severa</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A1. Prescripción generalizada</td>
+<td style="text-align: right;">50</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">-80</td>
+</tr>
+<tr class="even">
+<td>A2. Uso estrictamente oncológico</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">15</td>
+</tr>
+<tr class="odd">
+<td>A3. Control estricto</td>
+<td style="text-align: right;">35</td>
+<td style="text-align: right;">25</td>
+<td style="text-align: right;">-10</td>
+</tr>
+<tr class="even">
+<td>A4. Restricción total</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">10</td>
+</tr>
+</tbody>
+</table>
+<p>Se pide resolver el problema utilizando la función en R que agrupa todos los criterios de decisión en una única tabla. Se utilizará un coeficiente de optimismo k = 0,4. Se evaluará la matriz tanto en situación favorable (buscando maximizar el beneficio social) como desfavorable (en caso de que la matriz se interpretara como costes a minimizar).</p>
+<p>Esta es la tabla de decisión del problema.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>tabla_oxy <span class="ot">&lt;-</span> <span class="fu">matrix</span>(</span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="dv">50</span>, <span class="dv">10</span>, <span class="sc">-</span><span class="dv">80</span>,</span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>    <span class="dv">20</span>, <span class="dv">20</span>, <span class="dv">15</span>,</span>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>    <span class="dv">35</span>, <span class="dv">25</span>, <span class="sc">-</span><span class="dv">10</span>,</span>
+<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a>    <span class="dv">10</span>, <span class="dv">10</span>, <span class="dv">10</span>),</span>
+<span id="cb54-6"><a href="#cb54-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">nrow =</span> <span class="dv">4</span>,</span>
+<span id="cb54-7"><a href="#cb54-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">byrow =</span> <span class="cn">TRUE</span></span>
+<span id="cb54-8"><a href="#cb54-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb54-9"><a href="#cb54-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-10"><a href="#cb54-10" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(tabla_oxy) <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb54-11"><a href="#cb54-11" aria-hidden="true" tabindex="-1"></a>  <span class="st">"A1. Prescripción generalizada"</span>,</span>
+<span id="cb54-12"><a href="#cb54-12" aria-hidden="true" tabindex="-1"></a>  <span class="st">"A2. Uso estrictamente oncológico"</span>,</span>
+<span id="cb54-13"><a href="#cb54-13" aria-hidden="true" tabindex="-1"></a>  <span class="st">"A3. Control estricto"</span>,</span>
+<span id="cb54-14"><a href="#cb54-14" aria-hidden="true" tabindex="-1"></a>  <span class="st">"A4. Restricción total"</span></span>
+<span id="cb54-15"><a href="#cb54-15" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb54-16"><a href="#cb54-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-17"><a href="#cb54-17" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(tabla_oxy) <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb54-18"><a href="#cb54-18" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Q1. Baja adicción"</span>,</span>
+<span id="cb54-19"><a href="#cb54-19" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Q2. Adicción moderada"</span>,</span>
+<span id="cb54-20"><a href="#cb54-20" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Q3. Adicción severa"</span></span>
+<span id="cb54-21"><a href="#cb54-21" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb54-22"><a href="#cb54-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-23"><a href="#cb54-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Comprobar la matriz</span></span>
+<span id="cb54-24"><a href="#cb54-24" aria-hidden="true" tabindex="-1"></a>tabla_oxy</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                                 Q1. Baja adicción Q2. Adicción moderada
+A1. Prescripción generalizada                   50                    10
+A2. Uso estrictamente oncológico                20                    20
+A3. Control estricto                            35                    25
+A4. Restricción total                           10                    10
+                                 Q3. Adicción severa
+A1. Prescripción generalizada                    -80
+A2. Uso estrictamente oncológico                  15
+A3. Control estricto                             -10
+A4. Restricción total                             10</code></pre>
+</div>
+</div>
+<p><strong>Resolución mediante los criterios de decisión</strong></p>
+<section id="situación-favorable-1" class="level2">
+<h2 class="anchored" data-anchor-id="situación-favorable-1"><strong>Situación favorable</strong></h2>
+<p>Se utiliza un coeficiente de optimismo k = 0,4.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">criterio.Todos</span>(tabla_oxy, <span class="at">alfa =</span> <span class="fl">0.4</span>, <span class="at">favorable =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                                 Q1. Baja adicción Q2. Adicción moderada
+A1. Prescripción generalizada                   50                    10
+A2. Uso estrictamente oncológico                20                    20
+A3. Control estricto                            35                    25
+A4. Restricción total                           10                    10
+iAlt.Opt (fav.)                                 --                    --
+                                 Q3. Adicción severa
+A1. Prescripción generalizada                    -80
+A2. Uso estrictamente oncológico                  15
+A3. Control estricto                             -10
+A4. Restricción total                             10
+iAlt.Opt (fav.)                                   --
+                                                             Wald
+A1. Prescripción generalizada                                 -80
+A2. Uso estrictamente oncológico                               15
+A3. Control estricto                                          -10
+A4. Restricción total                                          10
+iAlt.Opt (fav.)                  A2. Uso estrictamente oncológico
+                                                     Optimista
+A1. Prescripción generalizada                               50
+A2. Uso estrictamente oncológico                            20
+A3. Control estricto                                        35
+A4. Restricción total                                       10
+iAlt.Opt (fav.)                  A1. Prescripción generalizada
+                                                          Hurwicz
+A1. Prescripción generalizada                                 -28
+A2. Uso estrictamente oncológico                               17
+A3. Control estricto                                            8
+A4. Restricción total                                          10
+iAlt.Opt (fav.)                  A2. Uso estrictamente oncológico
+                                               Savage
+A1. Prescripción generalizada                      95
+A2. Uso estrictamente oncológico                   30
+A3. Control estricto                               25
+A4. Restricción total                              40
+iAlt.Opt (fav.)                  A3. Control estricto
+                                                          Laplace
+A1. Prescripción generalizada                              -6.667
+A2. Uso estrictamente oncológico                           18.333
+A3. Control estricto                                       16.667
+A4. Restricción total                                      10.000
+iAlt.Opt (fav.)                  A2. Uso estrictamente oncológico
+                                          Punto Ideal
+A1. Prescripción generalizada                   96.18
+A2. Uso estrictamente oncológico                30.41
+A3. Control estricto                            29.15
+A4. Restricción total                           43.01
+iAlt.Opt (fav.)                  A3. Control estricto
+                                                     Veces Optima
+A1. Prescripción generalizada                                   1
+A2. Uso estrictamente oncológico                                3
+A3. Control estricto                                            2
+A4. Restricción total                                           0
+iAlt.Opt (fav.)                  A2. Uso estrictamente oncológico</code></pre>
+</div>
+</div>
+</section>
+<section id="situación-desfavorable-1" class="level2">
+<h2 class="anchored" data-anchor-id="situación-desfavorable-1"><strong>Situación desfavorable</strong></h2>
+<p>Se utiliza un coeficiente de optimismo k = 0,4.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">criterio.Todos</span>(tabla_oxy, <span class="at">alfa =</span> <span class="fl">0.4</span>, <span class="at">favorable =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                                 Q1. Baja adicción Q2. Adicción moderada
+A1. Prescripción generalizada                   50                    10
+A2. Uso estrictamente oncológico                20                    20
+A3. Control estricto                            35                    25
+A4. Restricción total                           10                    10
+iAlt.Opt (Desfav.)                              --                    --
+                                 Q3. Adicción severa                  Wald
+A1. Prescripción generalizada                    -80                    50
+A2. Uso estrictamente oncológico                  15                    20
+A3. Control estricto                             -10                    35
+A4. Restricción total                             10                    10
+iAlt.Opt (Desfav.)                                -- A4. Restricción total
+                                                     Optimista
+A1. Prescripción generalizada                              -80
+A2. Uso estrictamente oncológico                            15
+A3. Control estricto                                       -10
+A4. Restricción total                                       10
+iAlt.Opt (Desfav.)               A1. Prescripción generalizada
+                                                       Hurwicz
+A1. Prescripción generalizada                               -2
+A2. Uso estrictamente oncológico                            18
+A3. Control estricto                                        17
+A4. Restricción total                                       10
+iAlt.Opt (Desfav.)               A1. Prescripción generalizada
+                                                        Savage
+A1. Prescripción generalizada                               40
+A2. Uso estrictamente oncológico                            95
+A3. Control estricto                                        70
+A4. Restricción total                                       90
+iAlt.Opt (Desfav.)               A1. Prescripción generalizada
+                                                       Laplace
+A1. Prescripción generalizada                           -6.667
+A2. Uso estrictamente oncológico                        18.333
+A3. Control estricto                                    16.667
+A4. Restricción total                                   10.000
+iAlt.Opt (Desfav.)               A1. Prescripción generalizada
+                                                   Punto Ideal
+A1. Prescripción generalizada                            40.00
+A2. Uso estrictamente oncológico                         96.05
+A3. Control estricto                                     75.83
+A4. Restricción total                                    90.00
+iAlt.Opt (Desfav.)               A1. Prescripción generalizada
+                                                  Veces Optima
+A1. Prescripción generalizada                                5
+A2. Uso estrictamente oncológico                             0
+A3. Control estricto                                         0
+A4. Restricción total                                        1
+iAlt.Opt (Desfav.)               A1. Prescripción generalizada</code></pre>
+</div>
+</div>
+</section>
+<section id="cuestionario-verdaderofalso-problema-4" class="level2">
+<h2 class="anchored" data-anchor-id="cuestionario-verdaderofalso-problema-4"><strong>Cuestionario Verdadero/Falso (Problema 4):</strong></h2>
+<ol type="1">
+<li><p><strong>Verdadera.</strong> La alternativa A4 tiene un valor constante de 10 millones en los tres estados de la naturaleza.</p></li>
+<li><p><strong>Verdadera.</strong> Los peores resultados de A1, A2, A3 y A4 son -80, 15, -10 y 10, respectivamente. Wald favorable selecciona A2, con 15.</p></li>
+<li><p><strong>Falsa.</strong> Según el criterio de Savage en situación favorable, la alternativa A2 tiene una pérdida de 30 millones, mientras que A3 tiene una pérdida de 25 millones. Por lo tanto, A3 es la seleccionada.</p></li>
+<li><p><strong>Falsa.</strong> Según el criterio del Punto Ideal en situación favorable, A2 tiene un valor de 30,41 millones, mientras que A3 tiene una de 29,15 millones. Por lo tanto, A3 es la seleccionada.</p></li>
+<li><p><strong>Verdadera.</strong> Wald desfavorable minimiza el máximo valor de cada fila. Los máximos son 50, 20, 35 y 10, por lo que selecciona A4.</p></li>
+</ol>
+</section>
+<section id="respuestas-verdaderas-3" class="level2">
+<h2 class="anchored" data-anchor-id="respuestas-verdaderas-3">Respuestas verdaderas</h2>
+<p>Las afirmaciones verdaderas del cuestionario son la <strong>1, la 2 y la 5</strong>.</p>
+<hr>
 </section>
 </section>
 

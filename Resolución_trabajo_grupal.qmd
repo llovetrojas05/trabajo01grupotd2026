@@ -119,6 +119,8 @@ criterio.Laplace(tabla_m1, favorable=FALSE)
 
 Las afirmaciones verdaderas del cuestionario son la **1, la 3 y la 5**.
 
+------------------------------------------------------------------------
+
 # *Problema 2: La Floristería en Cádiz (Solución con tabla única)*
 
 La "Floristería Pétalos" de Cádiz está preparando su campaña especial de primavera con tulipanes de Holanda. El dueño tiene que decidir cuántos lotes encargar antes de que empiece la temporada. Las alternativas de decisión son:
@@ -219,3 +221,283 @@ Por tanto, la compra de 200 tulipanes es la alternativa respaldada por un mayor 
 ## Respuestas verdaderas
 
 Las afirmaciones verdaderas del cuestionario son la **1 y la 4**.
+
+------------------------------------------------------------------------
+
+# PROBLEMAS DE JAVIER RIBELLES SÁNCHEZ
+
+# *Problema 3: Decisión cinematográfica Óscar 2027*
+
+**Contexto:**
+
+
+Una distribuidora cinematográfica dispone de un presupuesto
+extraordinario para promocionar una película durante la temporada de
+premios de los Óscar de 2027. Su objetivo es elegir la película en la
+que invertir ese presupuesto para obtener el mayor beneficio económico
+adicional.
+
+La distribuidora está considerando cuatro películas: *La Odisea*, *La
+bola negra*, *Fjord* y *Dune: Parte tres*. El caso es hipotético: no se
+presupone que estas películas estén nominadas a los Óscar ni que vayan a
+obtener determinados resultados.
+
+El beneficio adicional dependerá de la recepción de la película durante
+la temporada de premios. Se consideran tres posibles estados de la
+naturaleza:
+
+- **Q1. Gran repercusión:** la película genera una gran atención
+  mediática y obtiene un reconocimiento destacado durante la temporada
+  de premios.
+- **Q2. Repercusión moderada:** la película recibe cierta atención y
+  reconocimiento, pero su impacto comercial es limitado.
+- **Q3. Escasa repercusión:** la película obtiene poca atención durante
+  la temporada de premios y la inversión promocional produce resultados
+  reducidos.
+
+La distribuidora ha elaborado las siguientes estimaciones hipotéticas
+del beneficio adicional neto, expresado en millones de euros:
+
+| Película | Q1: Gran repercusión | Q2: Repercusión moderada | Q3: Escasa repercusión |
+|------------------|-----------------:|-----------------:|-----------------:|
+| A1. La Odisea | 18 | 8 | -4 |
+| A2. La bola negra | 12 | 9 | 1 |
+| A3. Fjord | 10 | 7 | 3 |
+| A4. Dune: Parte tres | 20 | 5 | -8 |
+
+Los valores negativos representan pérdidas adicionales derivadas de que
+la inversión promocional no se recupere.
+
+Se pide resolver el problema mediante los criterios de Wald, Optimista,
+Hurwicz (con k = 0,3), Savage, Laplace y Punto Ideal, utilizando las
+funciones proporcionadas en la asignatura. Se estudiarán las
+interpretaciones favorable y desfavorable previstas por dichas
+funciones.
+
+Esta es la tabla de decisión del problema.
+
+```{r}
+tablaX <- matrix(
+  c(18, 8, -4,
+    12, 9, 1,
+    10, 7, 3,
+    20, 5, -8),
+  nrow = 4,
+  byrow = TRUE
+)
+
+rownames(tablaX) <- c(
+  "A1. La Odisea",
+  "A2. La bola negra",
+  "A3. Fjord",
+  "A4. Dune: Parte tres"
+)
+
+colnames(tablaX) <- c(
+  "Q1. Gran repercusión",
+  "Q2. Repercusión moderada",
+  "Q3. Escasa repercusión"
+)
+
+tablaX
+```
+
+**Resolución mediante los criterios de decisión**
+
+## **Situación favorable**
+
+**Criterio de Wald**
+
+```{r}
+criterio.Wald(tablaX, favorable = TRUE)
+```
+
+**Criterio Optimista**
+
+```{r}
+criterio.Optimista(tablaX, favorable = TRUE)
+```
+
+**Criterio de Hurwicz**
+
+Se utiliza un coeficiente de optimismo k = 0,3.
+
+```{r}
+criterio.Hurwicz(tablaX, alfa = 0.3, favorable = TRUE)
+```
+
+**Criterio de Savage**
+
+```{r}
+criterio.Savage(tablaX, favorable = TRUE)
+```
+
+**Criterio de Laplace**
+
+```{r}
+criterio.Laplace(tablaX, favorable = TRUE)
+```
+
+**Criterio del Punto Ideal**
+
+```{r}
+criterio.PuntoIdeal(tablaX, favorable = TRUE)
+```
+
+## **Situación desfavorable**
+
+**Criterio de Wald**
+
+```{r}
+criterio.Wald(tablaX, favorable = FALSE)
+```
+
+**Criterio Optimista**
+
+```{r}
+criterio.Optimista(tablaX, favorable = FALSE)
+```
+
+**Criterio de Hurwicz**
+
+Se utiliza un coeficiente de optimismo k= 0,3.
+
+```{r}
+criterio.Hurwicz(tablaX, alfa = 0.3, favorable = FALSE)
+```
+
+**Criterio de Savage**
+
+```{r}
+criterio.Savage(tablaX, favorable = FALSE)
+```
+
+**Criterio de Laplace**
+
+```{r}
+criterio.Laplace(tablaX, favorable = FALSE)
+```
+
+**Criterio del Punto Ideal**
+
+```{r}
+criterio.PuntoIdeal(tablaX, favorable = FALSE)
+```
+
+## **Cuestionario Verdadero/Falso (Problema 3):**
+
+1.  **Verdadera.** A1. La Odisea tiene un beneficio de -4 millones de euros en Q3.
+
+2.  **Verdadera.** A4. Dune: Parte tres alcanza el mayor beneficio posible de la tabla, con 20 millones de euros en Q1.
+
+3.  **Verdadera.** El peor resultado de A3. Fjord es 3 millones de euros, superior al peor resultado de las demás alternativas.
+
+4.  **Falsa.** Según el criterio de Laplace, A1 (La Odisea) no es la única alternativa seleccionada, ya que empata con A2 (La bola negra) al obtener ambas un beneficio      medio de aproximadamente 7,33 millones de euros.
+
+5.  **Falsa.** Según el criterio de Hurwicz, con un coeficiente de optimismo k = 0,3 en una situación favorable, la alternativa seleccionada es A3 (Fjord), con un valor de 5,1 millones de euros, superior a los 4,3 millones de A2 (La bola negra).
+
+## Respuestas verdaderas
+
+Las afirmaciones verdaderas del cuestionario son la **1, la 2 y la 3**.
+
+
+------------------------------------------------------------------------
+
+# *Problema 4: Decisión de salud pública sobre el control del OxyContin*
+
+**Contexto:**
+
+
+A finales de la década de 1990 y principios de los 2000, diversas agencias de salud pública se enfrentaron a la introducción y fuerte promoción comercial de nuevos analgésicos opioides, como el OxyContin. Para este problema basado en una situación real, nos situamos en la posición de un comité de un servicio regional de salud que debe establecer el protocolo oficial para la prescripción de este potente medicamento.
+
+El comité busca maximizar el "beneficio social neto", una métrica que suma los beneficios derivados del alivio efectivo del dolor en la población y resta los graves costes sanitarios, sociales y económicos derivados de la adicción, sobredosis y desvío al mercado negro.
+
+El comité valora cuatro alternativas (protocolos):
+
+- **A1. Prescripción generalizada (Laxa):** Permitir a cualquier médico recetar el fármaco para dolores moderados y crónicos no oncológicos, tal y como sugería la campaña de la farmacéutica.
+- **A2. Uso estrictamente oncológico:** Restringir la prescripción exclusivamente a pacientes con cáncer terminal o dolor agudo postoperatorio severo en entorno hospitalario.
+- **A3. Prescripción con control estricto:** Permitir el uso para dolor crónico, pero exigiendo derivación a Unidades del Dolor, contratos terapéuticos, test de drogas regulares y seguimiento exhaustivo.
+- **A4. Restricción total / Sustitución:** Prohibir su inclusión en el vademécum regional, obligando a usar alternativas no opioides o analgésicos tradicionales menos potentes.
+
+El impacto final depende fundamentalmente de la respuesta poblacional y del potencial adictivo real del fármaco a largo plazo (estado de la naturaleza):
+
+- **Q1. Baja tasa de adicción:** El medicamento se usa mayoritariamente según lo prescrito y los casos de abuso son anecdóticos.
+- **Q2. Adicción moderada:** Existe un desvío moderado al mercado negro y una parte de los pacientes desarrolla dependencia que requiere tratamiento.
+- **Q3. Adicción severa:** Se desata una crisis epidémica de opioides con altos índices de mortalidad, crimen y colapso de los servicios de urgencias.
+
+La estimación del beneficio social neto (expresado en millones de euros, donde los valores negativos representan un desastre social y económico) es la siguiente:
+
+| Protocolo | Q1: Baja adicción | Q2: Adicción moderada | Q3: Adicción severa |
+|------------------|-----------------:|-----------------:|-----------------:|
+| A1. Prescripción generalizada | 50 | 10 | -80 |
+| A2. Uso estrictamente oncológico | 20 | 20 | 15 |
+| A3. Control estricto | 35 | 25 | -10 |
+| A4. Restricción total | 10 | 10 | 10 |
+
+Se pide resolver el problema utilizando la función en R que agrupa todos los criterios de decisión en una única tabla. Se utilizará un coeficiente de optimismo k = 0,4. Se evaluará la matriz tanto en situación favorable (buscando maximizar el beneficio social) como desfavorable (en caso de que la matriz se interpretara como costes a minimizar).
+
+Esta es la tabla de decisión del problema.
+
+```{r}
+tabla_oxy <- matrix(
+  c(50, 10, -80,
+    20, 20, 15,
+    35, 25, -10,
+    10, 10, 10),
+  nrow = 4,
+  byrow = TRUE
+)
+
+rownames(tabla_oxy) <- c(
+  "A1. Prescripción generalizada",
+  "A2. Uso estrictamente oncológico",
+  "A3. Control estricto",
+  "A4. Restricción total"
+)
+
+colnames(tabla_oxy) <- c(
+  "Q1. Baja adicción",
+  "Q2. Adicción moderada",
+  "Q3. Adicción severa"
+)
+
+# Comprobar la matriz
+tabla_oxy
+```
+
+**Resolución mediante los criterios de decisión**
+
+## **Situación favorable**
+
+Se utiliza un coeficiente de optimismo k = 0,4.
+
+```{r}
+criterio.Todos(tabla_oxy, alfa = 0.4, favorable = TRUE)
+```
+
+## **Situación desfavorable**
+
+Se utiliza un coeficiente de optimismo k = 0,4.
+
+```{r}
+criterio.Todos(tabla_oxy, alfa = 0.4, favorable = FALSE)
+```
+
+## **Cuestionario Verdadero/Falso (Problema 4):**
+
+1.  **Verdadera.** La alternativa A4 tiene un valor constante de 10 millones en los tres estados de la naturaleza.
+
+2.  **Verdadera.** Los peores resultados de A1, A2, A3 y A4 son -80, 15, -10 y 10, respectivamente. Wald favorable selecciona A2, con 15.
+
+3.  **Falsa.** Según el criterio de Savage en situación favorable, la alternativa A2 tiene una pérdida de 30 millones, mientras que A3 tiene una pérdida de 25 millones. Por lo tanto, A3 es la seleccionada.
+
+4.  **Falsa.** Según el criterio del Punto Ideal en situación favorable, A2 tiene un valor de 30,41 millones, mientras que A3 tiene una de 29,15 millones. Por lo tanto, A3 es la seleccionada.
+
+5.  **Verdadera.** Wald desfavorable minimiza el máximo valor de cada fila. Los máximos son 50, 20, 35 y 10, por lo que selecciona A4.
+
+## Respuestas verdaderas
+
+Las afirmaciones verdaderas del cuestionario son la **1, la 2 y la 5**.
+
+------------------------------------------------------------------------
+
