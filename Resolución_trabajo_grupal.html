@@ -74,7 +74,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="Resolución_trabajo_grupal_files/libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="Resolución_trabajo_grupal_files/libs/bootstrap/bootstrap.min.js"></script>
 <link href="Resolución_trabajo_grupal_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="Resolución_trabajo_grupal_files/libs/bootstrap/bootstrap-215b371544c282197b31c8aa00ce3677.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="Resolución_trabajo_grupal_files/libs/bootstrap/bootstrap-917079515d91bccb85b543faf8aa8bb6.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
@@ -920,8 +920,8 @@ $ValorOptimo
 [1] 7.333333
 
 $AlternativaOptima
-    A1. La Odisea A2. La bola negra 
-                1                 2 </code></pre>
+A1. La Odisea 
+            1 </code></pre>
 </div>
 </div>
 <p><strong>Criterio del Punto Ideal</strong></p>
@@ -1459,6 +1459,622 @@ iAlt.Opt (Desfav.)               A1. Prescripción generalizada</code></pre>
 <section id="respuestas-verdaderas-3" class="level2">
 <h2 class="anchored" data-anchor-id="respuestas-verdaderas-3">Respuestas verdaderas</h2>
 <p>Las afirmaciones verdaderas del cuestionario son la <strong>1, la 2 y la 5</strong>.</p>
+<hr>
+</section>
+</section>
+<section id="problemas-de-eduardo-llovet-rojas" class="level1">
+<h1>PROBLEMAS DE EDUARDO LLOVET ROJAS</h1>
+</section>
+<section id="problema-5-el-club-de-pádel-en-sevilla" class="level1">
+<h1><em>Problema 5: El club de pádel en Sevilla</em></h1>
+<p><strong>Contexto:</strong></p>
+<p>Un club de pádel ubicado en Sevilla está planificando la próxima temporada de torneos y debe decidir qué tipo de evento organizar. El éxito y los beneficios generados dependerán en gran medida de la demanda de inscripciones por parte de los jugadores, la cual es incierta.</p>
+<p>La directiva ha planteado cuatro alternativas posibles:</p>
+<ul>
+<li><p><span class="math inline">\(A_1\)</span>: Organizar un Torneo Local de fin de semana.</p></li>
+<li><p><span class="math inline">\(A_2\)</span>: Organizar un Torneo Regional (requiere más inversión en premios y publicidad).</p></li>
+<li><p><span class="math inline">\(A_3\)</span>: Organizar un Torneo Nacional patrocinado (alta inversión, pero con gran capacidad de atraer público si la demanda acompaña).</p></li>
+<li><p><span class="math inline">\(A_4\)</span>: No organizar ningún torneo y mantener las pistas de césped artificial para el alquiler normal de los socios.</p></li>
+</ul>
+<p>Los estados de la naturaleza corresponden al nivel de demanda esperado:</p>
+<ul>
+<li><p><span class="math inline">\(E_1\)</span>: Demanda Baja.</p></li>
+<li><p><span class="math inline">\(E_2\)</span>: Demanda Media.</p></li>
+<li><p><span class="math inline">\(E_3\)</span>: Demanda Alta.</p></li>
+</ul>
+<p>La matriz de beneficios estimada por el club para la temporada es la siguiente:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Alternativas</th>
+<th style="text-align: right;"><span class="math inline">\(E_1\)</span> (Baja)</th>
+<th style="text-align: right;"><span class="math inline">\(E_2\)</span> (Media)</th>
+<th style="text-align: right;"><span class="math inline">\(E_3\)</span> (Alta)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(A_1\)</span> (Torneo Local)</td>
+<td style="text-align: right;">40</td>
+<td style="text-align: right;">60</td>
+<td style="text-align: right;">70</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(A_2\)</span> (Torneo Regional)</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">50</td>
+<td style="text-align: right;">90</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(A_3\)</span> (Torneo Nacional)</td>
+<td style="text-align: right;">-20</td>
+<td style="text-align: right;">30</td>
+<td style="text-align: right;">120</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(A_4\)</span> (Alquiler Normal)</td>
+<td style="text-align: right;">45</td>
+<td style="text-align: right;">45</td>
+<td style="text-align: right;">45</td>
+</tr>
+</tbody>
+</table>
+<p>Los valores recogidos en la matriz están expresados en miles de euros.</p>
+<p>Cargamos el script de funciones y construimos la matriz de decisión:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Creamos la matriz del Problema 5</span></span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>datos_padel <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">40</span>, <span class="dv">60</span>, <span class="dv">70</span>,</span>
+<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a>                 <span class="dv">10</span>, <span class="dv">50</span>, <span class="dv">90</span>,</span>
+<span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a>                <span class="sc">-</span><span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">120</span>,</span>
+<span id="cb60-5"><a href="#cb60-5" aria-hidden="true" tabindex="-1"></a>                 <span class="dv">45</span>, <span class="dv">45</span>, <span class="dv">45</span>)</span>
+<span id="cb60-6"><a href="#cb60-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-7"><a href="#cb60-7" aria-hidden="true" tabindex="-1"></a>tabla_padel <span class="ot">&lt;-</span> <span class="fu">matrix</span>(datos_padel, <span class="at">nrow =</span> <span class="dv">4</span>, <span class="at">byrow =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb60-8"><a href="#cb60-8" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(tabla_padel) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"A1 (Local)"</span>, <span class="st">"A2 (Regional)"</span>, <span class="st">"A3 (Nacional)"</span>, <span class="st">"A4 (Alquiler)"</span>)</span>
+<span id="cb60-9"><a href="#cb60-9" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(tabla_padel) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"E1 (Baja)"</span>, <span class="st">"E2 (Media)"</span>, <span class="st">"E3 (Alta)"</span>)</span>
+<span id="cb60-10"><a href="#cb60-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-11"><a href="#cb60-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Mostramos la tabla</span></span>
+<span id="cb60-12"><a href="#cb60-12" aria-hidden="true" tabindex="-1"></a>tabla_padel</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>              E1 (Baja) E2 (Media) E3 (Alta)
+A1 (Local)           40         60        70
+A2 (Regional)        10         50        90
+A3 (Nacional)       -20         30       120
+A4 (Alquiler)        45         45        45</code></pre>
+</div>
+</div>
+<p>A continuación, se aplican individualmente los criterios clásicos de decisión bajo incertidumbre, tanto para una situación favorable (beneficios) como para una desfavorable (costes).</p>
+<section id="situación-favorable-beneficios-1" class="level2">
+<h2 class="anchored" data-anchor-id="situación-favorable-beneficios-1"><strong>Situación Favorable (Beneficios):</strong></h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="fu">criterio.Wald</span>(tabla_padel, <span class="at">favorable =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$criterio
+[1] "Wald"
+
+$metodo
+[1] "favorable"
+
+$tablaX
+              E1 (Baja) E2 (Media) E3 (Alta)
+A1 (Local)           40         60        70
+A2 (Regional)        10         50        90
+A3 (Nacional)       -20         30       120
+A4 (Alquiler)        45         45        45
+
+$ValorAlternativas
+   A1 (Local) A2 (Regional) A3 (Nacional) A4 (Alquiler) 
+           40            10           -20            45 
+
+$ValorOptimo
+[1] 45
+
+$AlternativaOptima
+A4 (Alquiler) 
+            4 </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="fu">criterio.Optimista</span>(tabla_padel, <span class="at">favorable =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$criterio
+[1] "Optimista"
+
+$metodo
+[1] "favorable"
+
+$tablaX
+              E1 (Baja) E2 (Media) E3 (Alta)
+A1 (Local)           40         60        70
+A2 (Regional)        10         50        90
+A3 (Nacional)       -20         30       120
+A4 (Alquiler)        45         45        45
+
+$ValorAlternativas
+   A1 (Local) A2 (Regional) A3 (Nacional) A4 (Alquiler) 
+           70            90           120            45 
+
+$ValorOptimo
+[1] 120
+
+$AlternativaOptima
+A3 (Nacional) 
+            3 </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="fu">criterio.Hurwicz</span>(tabla_padel, <span class="at">alfa =</span> <span class="fl">0.4</span>, <span class="at">favorable =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$criterio
+[1] "Hurwicz"
+
+$alfa
+[1] 0.4
+
+$metodo
+[1] "favorable"
+
+$tablaX
+              E1 (Baja) E2 (Media) E3 (Alta)
+A1 (Local)           40         60        70
+A2 (Regional)        10         50        90
+A3 (Nacional)       -20         30       120
+A4 (Alquiler)        45         45        45
+
+$ValorAlternativas
+   A1 (Local) A2 (Regional) A3 (Nacional) A4 (Alquiler) 
+           52            42            36            45 
+
+$ValorOptimo
+[1] 52
+
+$AlternativaOptima
+A1 (Local) 
+         1 </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="fu">criterio.Savage</span>(tabla_padel, <span class="at">favorable =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$criterio
+[1] "Savage"
+
+$metodo
+[1] "favorable"
+
+$tablaX
+              E1 (Baja) E2 (Media) E3 (Alta)
+A1 (Local)           40         60        70
+A2 (Regional)        10         50        90
+A3 (Nacional)       -20         30       120
+A4 (Alquiler)        45         45        45
+
+$Mejores
+ E1 (Baja) E2 (Media)  E3 (Alta) 
+        45         60        120 
+
+$Pesos
+              E1 (Baja) E2 (Media) E3 (Alta)
+A1 (Local)            5          0        50
+A2 (Regional)        35         10        30
+A3 (Nacional)        65         30         0
+A4 (Alquiler)         0         15        75
+
+$ValorAlternativas
+   A1 (Local) A2 (Regional) A3 (Nacional) A4 (Alquiler) 
+           50            35            65            75 
+
+$ValorOptimo
+[1] 35
+
+$AlternativaOptima
+A2 (Regional) 
+            2 </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="fu">criterio.Laplace</span>(tabla_padel, <span class="at">favorable =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$criterio
+[1] "Laplace"
+
+$metodo
+[1] "favorable"
+
+$tablaX
+              E1 (Baja) E2 (Media) E3 (Alta)
+A1 (Local)           40         60        70
+A2 (Regional)        10         50        90
+A3 (Nacional)       -20         30       120
+A4 (Alquiler)        45         45        45
+
+$ValorAlternativas
+   A1 (Local) A2 (Regional) A3 (Nacional) A4 (Alquiler) 
+     56.66667      50.00000      43.33333      45.00000 
+
+$ValorOptimo
+[1] 56.66667
+
+$AlternativaOptima
+A1 (Local) 
+         1 </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb72"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="fu">criterio.PuntoIdeal</span>(tabla_padel, <span class="at">favorable =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$criterio
+[1] "Punto Ideal"
+
+$metodo
+[1] "favorable"
+
+$tablaX
+              E1 (Baja) E2 (Media) E3 (Alta)
+A1 (Local)           40         60        70
+A2 (Regional)        10         50        90
+A3 (Nacional)       -20         30       120
+A4 (Alquiler)        45         45        45
+
+$Mejores
+ E1 (Baja) E2 (Media)  E3 (Alta) 
+        45         60        120 
+
+$ValorAlternativas
+   A1 (Local) A2 (Regional) A3 (Nacional) A4 (Alquiler) 
+     50.24938      47.16991      71.58911      76.48529 
+
+$ValorOptimo
+[1] 47.16991
+
+$AlternativaOptima
+A2 (Regional) 
+            2 </code></pre>
+</div>
+</div>
+<p><strong>Interpretación de los resultados:</strong></p>
+<ul>
+<li><strong>Criterio de Wald:</strong> La alternativa óptima es <span class="math inline">\(A_4\)</span> (Alquiler), ya que garantiza el mayor beneficio en el peor de los casos (45).</li>
+<li><strong>Criterio optimista:</strong> Se elige <span class="math inline">\(A_3\)</span> (Nacional), puesto que puede alcanzar el mayor beneficio posible, igual a 120.</li>
+<li><strong>Criterio de Hurwicz (</strong><span class="math inline">\(\alpha = 0,4\)</span>): La alternativa óptima es <span class="math inline">\(A_1\)</span> (Local), con un valor ponderado de 52.</li>
+<li><strong>Criterio de Savage:</strong> Se elige <span class="math inline">\(A_2\)</span> (Regional), ya que presenta el menor arrepentimiento máximo (35).</li>
+<li><strong>Criterio de Laplace:</strong> La alternativa óptima es <span class="math inline">\(A_1\)</span> (Local), con el mayor beneficio medio esperado (aproximadamente 56,66).</li>
+<li><strong>Criterio del Punto Ideal:</strong> La alternativa seleccionada es <span class="math inline">\(A_1\)</span> (Local) al presentar la menor distancia euclídea respecto a los mejores resultados posibles de cada estado.</li>
+</ul>
+</section>
+<section id="situación-desfavorable-costos-1" class="level2">
+<h2 class="anchored" data-anchor-id="situación-desfavorable-costos-1"><strong>Situación Desfavorable (Costos):</strong></h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb74"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="fu">criterio.Wald</span>(tabla_padel, <span class="at">favorable =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$criterio
+[1] "Wald"
+
+$metodo
+[1] "desfavorable"
+
+$tablaX
+              E1 (Baja) E2 (Media) E3 (Alta)
+A1 (Local)           40         60        70
+A2 (Regional)        10         50        90
+A3 (Nacional)       -20         30       120
+A4 (Alquiler)        45         45        45
+
+$ValorAlternativas
+   A1 (Local) A2 (Regional) A3 (Nacional) A4 (Alquiler) 
+           70            90           120            45 
+
+$ValorOptimo
+[1] 45
+
+$AlternativaOptima
+A4 (Alquiler) 
+            4 </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb76"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="fu">criterio.Optimista</span>(tabla_padel, <span class="at">favorable =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$criterio
+[1] "Optimista"
+
+$metodo
+[1] "desfavorable"
+
+$tablaX
+              E1 (Baja) E2 (Media) E3 (Alta)
+A1 (Local)           40         60        70
+A2 (Regional)        10         50        90
+A3 (Nacional)       -20         30       120
+A4 (Alquiler)        45         45        45
+
+$ValorAlternativas
+   A1 (Local) A2 (Regional) A3 (Nacional) A4 (Alquiler) 
+           40            10           -20            45 
+
+$ValorOptimo
+[1] -20
+
+$AlternativaOptima
+A3 (Nacional) 
+            3 </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb78"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="fu">criterio.Hurwicz</span>(tabla_padel, <span class="at">alfa =</span> <span class="fl">0.4</span>, <span class="at">favorable =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$criterio
+[1] "Hurwicz"
+
+$alfa
+[1] 0.4
+
+$metodo
+[1] "desfavorable"
+
+$tablaX
+              E1 (Baja) E2 (Media) E3 (Alta)
+A1 (Local)           40         60        70
+A2 (Regional)        10         50        90
+A3 (Nacional)       -20         30       120
+A4 (Alquiler)        45         45        45
+
+$ValorAlternativas
+   A1 (Local) A2 (Regional) A3 (Nacional) A4 (Alquiler) 
+           58            58            64            45 
+
+$ValorOptimo
+[1] 45
+
+$AlternativaOptima
+A4 (Alquiler) 
+            4 </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb80"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="fu">criterio.Savage</span>(tabla_padel, <span class="at">favorable =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$criterio
+[1] "Savage"
+
+$metodo
+[1] "desfavorable"
+
+$tablaX
+              E1 (Baja) E2 (Media) E3 (Alta)
+A1 (Local)           40         60        70
+A2 (Regional)        10         50        90
+A3 (Nacional)       -20         30       120
+A4 (Alquiler)        45         45        45
+
+$Mejores
+ E1 (Baja) E2 (Media)  E3 (Alta) 
+       -20         30         45 
+
+$Pesos
+              E1 (Baja) E2 (Media) E3 (Alta)
+A1 (Local)           60         30        25
+A2 (Regional)        30         20        45
+A3 (Nacional)         0          0        75
+A4 (Alquiler)        65         15         0
+
+$ValorAlternativas
+   A1 (Local) A2 (Regional) A3 (Nacional) A4 (Alquiler) 
+           60            45            75            65 
+
+$ValorOptimo
+[1] 45
+
+$AlternativaOptima
+A2 (Regional) 
+            2 </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb82"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a><span class="fu">criterio.Laplace</span>(tabla_padel, <span class="at">favorable =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$criterio
+[1] "Laplace"
+
+$metodo
+[1] "desfavorable"
+
+$tablaX
+              E1 (Baja) E2 (Media) E3 (Alta)
+A1 (Local)           40         60        70
+A2 (Regional)        10         50        90
+A3 (Nacional)       -20         30       120
+A4 (Alquiler)        45         45        45
+
+$ValorAlternativas
+   A1 (Local) A2 (Regional) A3 (Nacional) A4 (Alquiler) 
+     56.66667      50.00000      43.33333      45.00000 
+
+$ValorOptimo
+[1] 43.33333
+
+$AlternativaOptima
+A3 (Nacional) 
+            3 </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb84"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="fu">criterio.PuntoIdeal</span>(tabla_padel, <span class="at">favorable =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$criterio
+[1] "Punto Ideal"
+
+$metodo
+[1] "desfavorable"
+
+$tablaX
+              E1 (Baja) E2 (Media) E3 (Alta)
+A1 (Local)           40         60        70
+A2 (Regional)        10         50        90
+A3 (Nacional)       -20         30       120
+A4 (Alquiler)        45         45        45
+
+$Mejores
+ E1 (Baja) E2 (Media)  E3 (Alta) 
+       -20         30         45 
+
+$ValorAlternativas
+   A1 (Local) A2 (Regional) A3 (Nacional) A4 (Alquiler) 
+     71.58911      57.66281      75.00000      66.70832 
+
+$ValorOptimo
+[1] 57.66281
+
+$AlternativaOptima
+A2 (Regional) 
+            2 </code></pre>
+</div>
+</div>
+<p><strong>Interpretación de los resultados:</strong></p>
+<ul>
+<li><strong>Criterio de Wald:</strong> La alternativa óptima es <span class="math inline">\(A_4\)</span> (Alquiler), puesto que presenta el menor coste máximo posible (45).</li>
+<li><strong>Criterio optimista:</strong> Se elige <span class="math inline">\(A_3\)</span> (Nacional), ya que presenta el menor coste absoluto de la tabla (-20).</li>
+<li><strong>Criterio de Hurwicz (</strong><span class="math inline">\(\alpha = 0,4\)</span>): La alternativa óptima es <span class="math inline">\(A_4\)</span> (Alquiler), con el valor ponderado más bajo a minimizar (45).</li>
+<li><strong>Criterio de Savage:</strong> Al igual que en la favorable, se elige <span class="math inline">\(A_2\)</span> (Regional) por presentar la menor diferencia máxima de pesar (35).</li>
+<li><strong>Criterio de Laplace:</strong> La alternativa óptima es <span class="math inline">\(A_3\)</span> (Nacional), con un coste medio menor de 43,33.</li>
+<li><strong>Criterio del Punto Ideal:</strong> La alternativa seleccionada es <span class="math inline">\(A_4\)</span> (Alquiler).</li>
+</ul>
+</section>
+<section id="cuestionario-verdaderofalso-problema-5" class="level2">
+<h2 class="anchored" data-anchor-id="cuestionario-verdaderofalso-problema-5"><strong>Cuestionario Verdadero/Falso (Problema 5):</strong></h2>
+<p><strong>1.</strong> En situación favorable, el criterio de Wald recomienda la alternativa de organizar un Torneo Nacional (<span class="math inline">\(A_3\)</span>).</p>
+<p><strong>Respuesta:</strong> FALSO. <em>(Justificación: El criterio de Wald busca el máximo de los mínimos. Los mínimos de beneficios para cada alternativa son 40, 10, -20 y 45. El máximo de esos valores es 45, por lo que selecciona <span class="math inline">\(A_4\)</span> (Alquiler Normal)).</em></p>
+<p><strong>2.</strong> Aplicando el criterio de Laplace en situación favorable, la mejor decisión es organizar un Torneo Local (<span class="math inline">\(A_1\)</span>).</p>
+<p><strong>Respuesta:</strong> VERDADERO. <em>(Justificación: Laplace calcula la media de cada fila. La media de <span class="math inline">\(A_1\)</span> es 56,66, que es superior a la del resto de alternativas, por lo que se selecciona).</em></p>
+<p><strong>3.</strong> Si consideramos la matriz como una situación desfavorable (matriz de costes), el criterio Optimista seleccionaría la alternativa <span class="math inline">\(A_2\)</span>.</p>
+<p><strong>Respuesta:</strong> FALSO. <em>(Justificación: En situación desfavorable, el criterio optimista busca el valor mínimo absoluto de la matriz, que es -20. Por lo tanto, seleccionaría la alternativa <span class="math inline">\(A_3\)</span>).</em></p>
+<p><strong>4.</strong> En situación favorable, el criterio de Savage (minimax arrepentimiento) selecciona la alternativa del Torneo Regional (<span class="math inline">\(A_2\)</span>).</p>
+<p><strong>Respuesta:</strong> VERDADERO. <em>(Justificación: Savage calcula la matriz de pesares. El máximo pesar de <span class="math inline">\(A_2\)</span> es 35, que es el valor mínimo entre los pesares máximos de todas las alternativas).</em></p>
+<p><strong>5.</strong> Para un coeficiente de optimismo <span class="math inline">\(\alpha = 0.4\)</span>, el criterio de Hurwicz en situación favorable escoge la alternativa <span class="math inline">\(A_4\)</span>.</p>
+<p><strong>Respuesta:</strong> FALSO. <em>(Justificación: Al aplicar la fórmula para <span class="math inline">\(A_1\)</span> obtenemos <span class="math inline">\((0.4 \times 70) + (0.6 \times 40) = 52\)</span>. Para <span class="math inline">\(A_4\)</span> el valor es 45. Por tanto, selecciona <span class="math inline">\(A_1\)</span>).</em></p>
+</section>
+<section id="respuestas-verdaderas-4" class="level2">
+<h2 class="anchored" data-anchor-id="respuestas-verdaderas-4">Respuestas verdaderas</h2>
+<p>Las afirmaciones verdaderas del cuestionario son la <strong>2 y la 4</strong>.</p>
+<hr>
+</section>
+</section>
+<section id="problema-6-estrategia-de-stock-de-vehículos-híbridos-en-sevilla" class="level1">
+<h1><em>Problema 6: Estrategia de stock de vehículos híbridos en Sevilla</em></h1>
+<p><strong>Contexto:</strong></p>
+<p>Un concesionario de automóviles en Sevilla está definiendo su estrategia de compras para el próximo trimestre. Ante la implantación de nuevas Zonas de Bajas Emisiones (ZBE) en la ciudad, la gerencia duda sobre qué volumen de vehículos híbridos adquirir, ya que la demanda final es incierta y depende de la evolución de las restricciones de tráfico y de la economía local.</p>
+<p>Se plantean cuatro alternativas de decisión:</p>
+<ul>
+<li><p><span class="math inline">\(A_1\)</span>: Comprar un stock alto de vehículos híbridos (fuerte inversión).</p></li>
+<li><p><span class="math inline">\(A_2\)</span>: Comprar un stock medio de vehículos híbridos y mantener stock de gasolina.</p></li>
+<li><p><span class="math inline">\(A_3\)</span>: Comprar un stock bajo (estrategia muy conservadora).</p></li>
+<li><p><span class="math inline">\(A_4\)</span>: Importar únicamente vehículos 100% eléctricos.</p></li>
+</ul>
+<p>Los estados de la naturaleza (escenarios) previstos son:</p>
+<ul>
+<li><p><span class="math inline">\(E_1\)</span>: Alta demanda (las restricciones de la ZBE son muy estrictas).</p></li>
+<li><p><span class="math inline">\(E_2\)</span>: Demanda estable (sin cambios drásticos en la regulación).</p></li>
+<li><p><span class="math inline">\(E_3\)</span>: Caída de ventas (incertidumbre económica que frena la compra de coches).</p></li>
+</ul>
+<p>La matriz de beneficios esperados es la siguiente:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Alternativas</th>
+<th style="text-align: right;"><span class="math inline">\(E_1\)</span> (Alta)</th>
+<th style="text-align: right;"><span class="math inline">\(E_2\)</span> (Estable)</th>
+<th style="text-align: right;"><span class="math inline">\(E_3\)</span> (Caída)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(A_1\)</span> (Stock Alto)</td>
+<td style="text-align: right;">120</td>
+<td style="text-align: right;">50</td>
+<td style="text-align: right;">-20</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(A_2\)</span> (Stock Medio)</td>
+<td style="text-align: right;">80</td>
+<td style="text-align: right;">70</td>
+<td style="text-align: right;">10</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(A_3\)</span> (Stock Bajo)</td>
+<td style="text-align: right;">40</td>
+<td style="text-align: right;">40</td>
+<td style="text-align: right;">30</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(A_4\)</span> (Eléctricos)</td>
+<td style="text-align: right;">90</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">-40</td>
+</tr>
+</tbody>
+</table>
+<p>Los valores recogidos en la matriz están expresados en miles de euros, donde los valores negativos representan pérdidas derivadas de no poder dar salida al stock adquirido.</p>
+<section id="construcción-de-la-matriz-de-decisión-1" class="level2">
+<h2 class="anchored" data-anchor-id="construcción-de-la-matriz-de-decisión-1">Construcción de la matriz de decisión</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb86"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Matriz de beneficios</span></span>
+<span id="cb86-2"><a href="#cb86-2" aria-hidden="true" tabindex="-1"></a>datos_concesionario <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">120</span>, <span class="dv">50</span>, <span class="sc">-</span><span class="dv">20</span>,</span>
+<span id="cb86-3"><a href="#cb86-3" aria-hidden="true" tabindex="-1"></a>                          <span class="dv">80</span>, <span class="dv">70</span>,  <span class="dv">10</span>,</span>
+<span id="cb86-4"><a href="#cb86-4" aria-hidden="true" tabindex="-1"></a>                          <span class="dv">40</span>, <span class="dv">40</span>,  <span class="dv">30</span>,</span>
+<span id="cb86-5"><a href="#cb86-5" aria-hidden="true" tabindex="-1"></a>                          <span class="dv">90</span>, <span class="dv">20</span>, <span class="sc">-</span><span class="dv">40</span>)</span>
+<span id="cb86-6"><a href="#cb86-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb86-7"><a href="#cb86-7" aria-hidden="true" tabindex="-1"></a>tabla_concesionario <span class="ot">&lt;-</span> <span class="fu">matrix</span>(datos_concesionario, <span class="at">nrow =</span> <span class="dv">4</span>, <span class="at">byrow =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb86-8"><a href="#cb86-8" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(tabla_concesionario) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"A1 (Stock Alto)"</span>, <span class="st">"A2 (Stock Medio)"</span>, <span class="st">"A3 (Stock Bajo)"</span>, <span class="st">"A4 (Eléctricos)"</span>)</span>
+<span id="cb86-9"><a href="#cb86-9" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(tabla_concesionario) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"E1 (Alta)"</span>, <span class="st">"E2 (Estable)"</span>, <span class="st">"E3 (Caída)"</span>)</span>
+<span id="cb86-10"><a href="#cb86-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb86-11"><a href="#cb86-11" aria-hidden="true" tabindex="-1"></a>tabla_concesionario</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                 E1 (Alta) E2 (Estable) E3 (Caída)
+A1 (Stock Alto)        120           50        -20
+A2 (Stock Medio)        80           70         10
+A3 (Stock Bajo)         40           40         30
+A4 (Eléctricos)         90           20        -40</code></pre>
+</div>
+</div>
+<p>Para este problema, al ser una situación real de beneficios (favorable), se pide resolverlo utilizando la función que devuelve todos los métodos en una única tabla resumen. Usaremos un índice de optimismo <span class="math inline">\(\alpha = 0.5\)</span>:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb88"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Resolución con todos los criterios en una sola tabla (alfa = 0.5)</span></span>
+<span id="cb88-2"><a href="#cb88-2" aria-hidden="true" tabindex="-1"></a><span class="fu">criterio.Todos</span>(tabla_concesionario, <span class="at">alfa =</span> <span class="fl">0.5</span>, <span class="at">favorable =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                 E1 (Alta) E2 (Estable) E3 (Caída)            Wald
+A1 (Stock Alto)        120           50        -20             -20
+A2 (Stock Medio)        80           70         10              10
+A3 (Stock Bajo)         40           40         30              30
+A4 (Eléctricos)         90           20        -40             -40
+iAlt.Opt (fav.)         --           --         -- A3 (Stock Bajo)
+                       Optimista         Hurwicz           Savage
+A1 (Stock Alto)              120              50               50
+A2 (Stock Medio)              80              45               40
+A3 (Stock Bajo)               40              35               80
+A4 (Eléctricos)               90              25               70
+iAlt.Opt (fav.)  A1 (Stock Alto) A1 (Stock Alto) A2 (Stock Medio)
+                          Laplace      Punto Ideal     Veces Optima
+A1 (Stock Alto)             50.00            53.85                2
+A2 (Stock Medio)            53.33            44.72                3
+A3 (Stock Bajo)             36.67            85.44                1
+A4 (Eléctricos)             23.33            91.10                0
+iAlt.Opt (fav.)  A2 (Stock Medio) A2 (Stock Medio) A2 (Stock Medio)</code></pre>
+</div>
+</div>
+</section>
+<section id="interpretación-de-los-resultados-1" class="level2">
+<h2 class="anchored" data-anchor-id="interpretación-de-los-resultados-1">Interpretación de los resultados</h2>
+<p>Los distintos métodos arrojan resultados variados dependiendo del enfoque del decisor.</p>
+<p>Un enfoque pesimista (Wald) aseguraría el mejor escenario dentro de lo malo con <span class="math inline">\(A_3\)</span> (Stock Bajo). Por el contrario, un enfoque optimista absoluto, así como la ponderación mixta de Hurwicz (<span class="math inline">\(\alpha=0.5\)</span>), apuestan por arriesgar con <span class="math inline">\(A_1\)</span> (Stock Alto) para maximizar el retorno de ventas ante las nuevas normativas.</p>
+<p>Los criterios de Laplace, Savage y Punto Ideal convergen en seleccionar <span class="math inline">\(A_2\)</span> (Stock Medio) como la alternativa más sólida y equilibrada ante la incertidumbre general.</p>
+</section>
+<section id="cuestionario-verdaderofalso-problema-6" class="level2">
+<h2 class="anchored" data-anchor-id="cuestionario-verdaderofalso-problema-6"><strong>Cuestionario Verdadero/Falso (Problema 6):</strong></h2>
+<p><strong>1.</strong> Según el criterio de Wald (pesimista), la alternativa óptima es comprar un stock bajo (<span class="math inline">\(A_3\)</span>), garantizando el mayor beneficio en el peor de los casos.</p>
+<p><strong>Respuesta:</strong> VERDADERO. <em>(Justificación: Los peores resultados (mínimos) de cada alternativa son -20, 10, 30 y -40. Wald maximiza este valor, seleccionando 30, que corresponde a <span class="math inline">\(A_3\)</span>).</em></p>
+<p><strong>2.</strong> El criterio de Savage (minimax arrepentimiento) recomienda arriesgar e invertir en un stock alto de vehículos híbridos (<span class="math inline">\(A_1\)</span>).</p>
+<p><strong>Respuesta:</strong> FALSO. <em>(Justificación: Al calcular los pesares máximos, <span class="math inline">\(A_2\)</span> presenta el menor arrepentimiento posible (40), por lo que Savage selecciona <span class="math inline">\(A_2\)</span>, no <span class="math inline">\(A_1\)</span>).</em></p>
+<p><strong>3.</strong> El criterio Optimista selecciona la alternativa de importar únicamente vehículos eléctricos (<span class="math inline">\(A_4\)</span>).</p>
+<p><strong>Respuesta:</strong> FALSO. <em>(Justificación: El criterio optimista busca el valor más alto de la matriz, que es 120 (perteneciente a la alternativa <span class="math inline">\(A_1\)</span>)).</em></p>
+<p><strong>4.</strong> Aplicando el criterio de Laplace, la decisión óptima para el concesionario es comprar un stock medio (<span class="math inline">\(A_2\)</span>).</p>
+<p><strong>Respuesta:</strong> VERDADERO. <em>(Justificación: <span class="math inline">\(A_2\)</span> tiene el mayor beneficio promedio esperado (53,33 miles de euros) asumiendo estados equiprobables).</em></p>
+<p><strong>5.</strong> Si asumimos un coeficiente de optimismo <span class="math inline">\(\alpha = 0.5\)</span>, el método de Hurwicz coincide con el método Optimista y selecciona la alternativa <span class="math inline">\(A_1\)</span>.</p>
+<p><strong>Respuesta:</strong> VERDADERO. <em>(Justificación: El cálculo para <span class="math inline">\(A_1\)</span> arroja un resultado ponderado de 50 (máximo de todas las alternativas), seleccionándola como ganadora al igual que lo hace el criterio optimista puro).</em></p>
+</section>
+<section id="respuestas-verdaderas-5" class="level2">
+<h2 class="anchored" data-anchor-id="respuestas-verdaderas-5">Respuestas verdaderas</h2>
+<p>Las afirmaciones verdaderas del cuestionario son la <strong>1, la 4 y la 5</strong>.</p>
 <hr>
 </section>
 </section>
