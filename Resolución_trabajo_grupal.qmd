@@ -515,7 +515,7 @@ La matriz de beneficios estimada por el club para la temporada es la siguiente:
 
 Los valores recogidos en la matriz están expresados en miles de euros.
 
-Cargamos el script de funciones y construimos la matriz de decisión:
+Primero, construimos la matriz de decisión en R:
 
 ```{r}
 # Creamos la matriz del Problema 5
@@ -547,12 +547,12 @@ criterio.PuntoIdeal(tabla_padel, favorable = TRUE)
 
 **Interpretación de los resultados:**
 
-- **Criterio de Wald:** La alternativa óptima es $A_4$ (Alquiler), ya que garantiza el mayor beneficio en el peor de los casos (45).
-- **Criterio optimista:** Se elige $A_3$ (Nacional), puesto que puede alcanzar el mayor beneficio posible, igual a 120.
-- **Criterio de Hurwicz (**$\alpha = 0,4$): La alternativa óptima es $A_1$ (Local), con un valor ponderado de 52.
-- **Criterio de Savage:** Se elige $A_2$ (Regional), ya que presenta el menor arrepentimiento máximo (35).
-- **Criterio de Laplace:** La alternativa óptima es $A_1$ (Local), con el mayor beneficio medio esperado (aproximadamente 56,66).
-- **Criterio del Punto Ideal:** La alternativa seleccionada es $A_1$ (Local) al presentar la menor distancia euclídea respecto a los mejores resultados posibles de cada estado.
+- **Criterio de Wald:** La alternativa óptima es $A_4$ (Alquiler), con un valor óptimo de 45 (frente a los mínimos de 40 en $A_1$, 10 en $A_2$ y -20 en $A_3$).
+- **Criterio optimista:** Se elige $A_3$ (Nacional), ya que alcanza el mayor beneficio posible de la tabla, igual a 120 (frente a 70 en $A_1$, 90 en $A_2$ y 45 en $A_4$).
+- **Criterio de Hurwicz (**$\alpha = 0,4$): La alternativa óptima es $A_1$ (Local), con un valor óptimo de 52 (superando los 45 de $A_4$, los 42 de $A_2$ y los 36 de $A_3$).
+- **Criterio de Savage:** Se elige $A_2$ (Regional), ya que presenta el menor arrepentimiento máximo, igual a 35 (frente a 50 de $A_1$, 65 de $A_3$ y 75 de $A_4$).
+- **Criterio de Laplace:** La alternativa óptima es $A_1$ (Local), con un beneficio medio de 56,66667 (frente a 50 de $A_2$, 43,33333 de $A_3$ y 45 de $A_4$).
+- **Criterio del Punto Ideal:** La alternativa seleccionada es $A_2$ (Regional) al presentar la menor distancia euclídea (47,16991) respecto al punto ideal $(45, 60, 120)$, frente a las distancias de $A_1$ (50,24938), $A_3$ (71,58911) y $A_4$ (76,48529).
 
 ## **Situación Desfavorable (Costos):**
 
@@ -567,34 +567,34 @@ criterio.PuntoIdeal(tabla_padel, favorable = FALSE)
 
 **Interpretación de los resultados:**
 
-- **Criterio de Wald:** La alternativa óptima es $A_4$ (Alquiler), puesto que presenta el menor coste máximo posible (45).
-- **Criterio optimista:** Se elige $A_3$ (Nacional), ya que presenta el menor coste absoluto de la tabla (-20).
-- **Criterio de Hurwicz (**$\alpha = 0,4$): La alternativa óptima es $A_4$ (Alquiler), con el valor ponderado más bajo a minimizar (45).
-- **Criterio de Savage:** Al igual que en la favorable, se elige $A_2$ (Regional) por presentar la menor diferencia máxima de pesar (35).
-- **Criterio de Laplace:** La alternativa óptima es $A_3$ (Nacional), con un coste medio menor de 43,33.
-- **Criterio del Punto Ideal:** La alternativa seleccionada es $A_4$ (Alquiler).
+- **Criterio de Wald:** La alternativa óptima es $A_4$ (Alquiler), puesto que presenta el menor coste máximo posible, igual a 45 (frente a 70 en $A_1$, 90 en $A_2$ y 120 en $A_3$).
+- **Criterio optimista:** Se elige $A_3$ (Nacional), ya que presenta el menor coste posible de toda la tabla, igual a -20 (frente a 40 en $A_1$, 10 en $A_2$ y 45 en $A_4$).
+- **Criterio de Hurwicz (**$\alpha = 0,4$): La alternativa óptima es $A_4$ (Alquiler), con el valor ponderado más bajo a minimizar, igual a 45 (frente a 58 de $A_1$, 58 de $A_2$ y 64 de $A_3$).
+- **Criterio de Savage:** Se elige $A_2$ (Regional) por presentar el menor arrepentimiento máximo en costes, igual a 45 (frente a 60 de $A_1$, 75 de $A_3$ y 65 de $A_4$).
+- **Criterio de Laplace:** La alternativa óptima es $A_3$ (Nacional), al tener el menor coste medio con 43,33333 (frente a 45 de $A_4$, 50 de $A_2$ y 56,66667 de $A_1$).
+- **Criterio del Punto Ideal:** La alternativa seleccionada es $A_2$ (Regional), ya que obtiene la menor distancia euclídea (57,66281) respecto al punto ideal de costes $(-20, 30, 45)$, frente a las distancias de $A_4$ (66,70832), $A_1$ (71,58911) y $A_3$ (75,00000).
 
 ## **Cuestionario Verdadero/Falso (Problema 5):**
 
 **1.** En situación favorable, el criterio de Wald recomienda la alternativa de organizar un Torneo Nacional ($A_3$).
 
-**Respuesta:** FALSO. *(Justificación: El criterio de Wald busca el máximo de los mínimos. Los mínimos de beneficios para cada alternativa son 40, 10, -20 y 45. El máximo de esos valores es 45, por lo que selecciona $A_4$ (Alquiler Normal)).*
+**Respuesta:** FALSO. *(Justificación: Según la salida de `criterio.Wald`, los valores por alternativa son 40, 10, -20 y 45. El máximo de los mínimos es 45, por lo que la alternativa óptima es $A_4$ (Alquiler), no $A_3$).*
 
 **2.** Aplicando el criterio de Laplace en situación favorable, la mejor decisión es organizar un Torneo Local ($A_1$).
 
-**Respuesta:** VERDADERO. *(Justificación: Laplace calcula la media de cada fila. La media de $A_1$ es 56,66, que es superior a la del resto de alternativas, por lo que se selecciona).*
+**Respuesta:** VERDADERO. *(Justificación: Según la salida de `criterio.Laplace`, $A_1$ obtiene un valor óptimo de 56,66667, superando al resto de alternativas (50, 43,33333 y 45)).*
 
 **3.** Si consideramos la matriz como una situación desfavorable (matriz de costes), el criterio Optimista seleccionaría la alternativa $A_2$.
 
-**Respuesta:** FALSO. *(Justificación: En situación desfavorable, el criterio optimista busca el valor mínimo absoluto de la matriz, que es -20. Por lo tanto, seleccionaría la alternativa $A_3$).*
+**Respuesta:** FALSO. *(Justificación: Según la salida de `criterio.Optimista` con `favorable = FALSE`, el valor óptimo (mínimo de los mínimos) es -20, lo que selecciona la alternativa $A_3$ (Nacional), no $A_2$).*
 
 **4.** En situación favorable, el criterio de Savage (minimax arrepentimiento) selecciona la alternativa del Torneo Regional ($A_2$).
 
-**Respuesta:** VERDADERO. *(Justificación: Savage calcula la matriz de pesares. El máximo pesar de $A_2$ es 35, que es el valor mínimo entre los pesares máximos de todas las alternativas).*
+**Respuesta:** VERDADERO. *(Justificación: Según la salida de `criterio.Savage`, los valores de arrepentimiento máximo por alternativa son 50, 35, 65 y 75. El mínimo de ellos es 35, seleccionando $A_2$ (Regional)).*
 
 **5.** Para un coeficiente de optimismo $\alpha = 0.4$, el criterio de Hurwicz en situación favorable escoge la alternativa $A_4$.
 
-**Respuesta:** FALSO. *(Justificación: Al aplicar la fórmula para $A_1$ obtenemos $(0.4 \times 70) + (0.6 \times 40) = 52$. Para $A_4$ el valor es 45. Por tanto, selecciona $A_1$).*
+**Respuesta:** FALSO. *(Justificación: Según la salida de `criterio.Hurwicz`, los valores obtenidos son 52 para $A_1$, 42 para $A_2$, 36 para $A_3$ y 45 para $A_4$. El valor óptimo es 52, por lo que escoge $A_1$ (Local), no $A_4$).*
 
 ## Respuestas verdaderas
 
@@ -653,7 +653,7 @@ colnames(tabla_concesionario) <- c("E1 (Alta)", "E2 (Estable)", "E3 (Caída)")
 tabla_concesionario
 ```
 
-Para este problema, al ser una situación real de beneficios (favorable), se pide resolverlo utilizando la función que devuelve todos los métodos en una única tabla resumen. Usaremos un índice de optimismo $\alpha = 0.5$:
+Para este problema, al tratarse de una situación favorable de beneficios, se resuelve utilizando la función `criterio.Todos` para evaluar todas las metodologías en una única tabla resumen, empleando un índice de optimismo $\alpha = 0.5$:
 
 ```{r}
 # Resolución con todos los criterios en una sola tabla (alfa = 0.5)
@@ -662,33 +662,33 @@ criterio.Todos(tabla_concesionario, alfa = 0.5, favorable = TRUE)
 
 ## Interpretación de los resultados
 
-Los distintos métodos arrojan resultados variados dependiendo del enfoque del decisor.
+Observando la fila `iAlt.Opt (fav.)` y la columna `Veces Optima` de la tabla generada:
 
-Un enfoque pesimista (Wald) aseguraría el mejor escenario dentro de lo malo con $A_3$ (Stock Bajo). Por el contrario, un enfoque optimista absoluto, así como la ponderación mixta de Hurwicz ($\alpha=0.5$), apuestan por arriesgar con $A_1$ (Stock Alto) para maximizar el retorno de ventas ante las nuevas normativas.
-
-Los criterios de Laplace, Savage y Punto Ideal convergen en seleccionar $A_2$ (Stock Medio) como la alternativa más sólida y equilibrada ante la incertidumbre general.
+- El criterio de **Wald** selecciona `A3 (Stock Bajo)` con un valor de 30, asegurando el mejor resultado en el peor escenario.
+- Los criterios **Optimista** (con 120) y **Hurwicz** con $\alpha = 0,5$ (con 50) apuestan por arriesgar con `A1 (Stock Alto)`.
+- Los criterios de **Savage** (40), **Laplace** (53,33) y **Punto Ideal** (44,72) coinciden en señalar `A2 (Stock Medio)` como la opción más equilibrada, siendo además la alternativa más veces óptima (3 veces) en el resumen global.
 
 ## **Cuestionario Verdadero/Falso (Problema 6):**
 
 **1.** Según el criterio de Wald (pesimista), la alternativa óptima es comprar un stock bajo ($A_3$), garantizando el mayor beneficio en el peor de los casos.
 
-**Respuesta:** VERDADERO. *(Justificación: Los peores resultados (mínimos) de cada alternativa son -20, 10, 30 y -40. Wald maximiza este valor, seleccionando 30, que corresponde a $A_3$).*
+**Respuesta:** VERDADERO. *(Justificación: En la columna `Wald` de la tabla resumen los valores son -20, 10, 30 y -40, señalando como óptima `A3 (Stock Bajo)` con 30).*
 
 **2.** El criterio de Savage (minimax arrepentimiento) recomienda arriesgar e invertir en un stock alto de vehículos híbridos ($A_1$).
 
-**Respuesta:** FALSO. *(Justificación: Al calcular los pesares máximos, $A_2$ presenta el menor arrepentimiento posible (40), por lo que Savage selecciona $A_2$, no $A_1$).*
+**Respuesta:** FALSO. *(Justificación: En la columna `Savage` los valores son 50 para $A_1$, 40 para $A_2$, 80 para $A_3$ y 70 para $A_4$. El mínimo arrepentimiento es 40, por lo que selecciona `A2 (Stock Medio)`, no $A_1$).*
 
 **3.** El criterio Optimista selecciona la alternativa de importar únicamente vehículos eléctricos ($A_4$).
 
-**Respuesta:** FALSO. *(Justificación: El criterio optimista busca el valor más alto de la matriz, que es 120 (perteneciente a la alternativa $A_1$)).*
+**Respuesta:** FALSO. *(Justificación: En la columna `Optimista` los valores son 120, 80, 40 y 90. El máximo es 120, por lo que la tabla selecciona `A1 (Stock Alto)`, no $A_4$).*
 
 **4.** Aplicando el criterio de Laplace, la decisión óptima para el concesionario es comprar un stock medio ($A_2$).
 
-**Respuesta:** VERDADERO. *(Justificación: $A_2$ tiene el mayor beneficio promedio esperado (53,33 miles de euros) asumiendo estados equiprobables).*
+**Respuesta:** VERDADERO. *(Justificación: En la columna `Laplace` los valores formateados son 50.00, 53.33, 36.67 y 23.33, seleccionando como óptima `A2 (Stock Medio)` con 53.33).*
 
 **5.** Si asumimos un coeficiente de optimismo $\alpha = 0.5$, el método de Hurwicz coincide con el método Optimista y selecciona la alternativa $A_1$.
 
-**Respuesta:** VERDADERO. *(Justificación: El cálculo para $A_1$ arroja un resultado ponderado de 50 (máximo de todas las alternativas), seleccionándola como ganadora al igual que lo hace el criterio optimista puro).*
+**Respuesta:** VERDADERO. *(Justificación: En la columna `Hurwicz` los valores son 50, 45, 35 y 25. El máximo es 50, seleccionando `A1 (Stock Alto)` al igual que el método Optimista).*
 
 ## Respuestas verdaderas
 
