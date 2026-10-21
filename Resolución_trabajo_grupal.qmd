@@ -6,6 +6,16 @@ format:
 editor: visual
 ---
 
+# Introducción
+
+En este documento se presentan los seis problemas de Teoría de la Decisión bajo Incertidumbre elaborados por los integrantes del grupo, junto con sus correspondientes resoluciones.
+
+Para resolverlos se utilizan las funciones de R proporcionadas en la asignatura, aplicando los criterios de decisión bajo incertidumbre estudiados.
+
+En los primeros problemas de cada integrante se analizan situaciones favorables (beneficios) y desfavorables (costes), aplicando individualmente los criterios correspondientes. En los segundos problemas se utiliza la función `criterio.Todos()` para obtener los resultados de los distintos criterios en una única tabla.
+
+Además, se incluyen las interpretaciones de los resultados y las justificaciones de las afirmaciones de verdadero o falso planteadas en los enunciados.
+
 ## Configuración inicial
 
 Primero, cargo las funciones del repositorio del profesor para poder utilizarlas.
@@ -470,7 +480,7 @@ criterio.Todos(tabla_oxy, alfa = 0.4, favorable = FALSE)
 
 4.  **Falsa.** Según el criterio del Punto Ideal en situación favorable, A2 tiene un valor de 30,41 millones, mientras que A3 tiene una de 29,15 millones. Por lo tanto, A3 es la seleccionada.
 
-5.  **Verdadera.** Wald desfavorable minimiza el máximo valor de cada fila. Los máximos son 50, 20, 35 y 10, por lo que selecciona A4.
+5.  **Verdadera.** Wald desfavorable minimiza el máximo valor de cada row. Los máximos son 50, 20, 35 y 10, por lo que selecciona A4.
 
 ## Respuestas verdaderas
 
@@ -478,7 +488,7 @@ Las afirmaciones verdaderas del cuestionario son la **1, la 2 y la 5**.
 
 ------------------------------------------------------------------------
 
-# PROBLEMAS DE EDUARDO LLOVET ROJAS
+# PROBLEMAS DE EDUARDO LLOVET RODRÍGUEZ
 
 # *Problema 5: El club de pádel en Sevilla*
 

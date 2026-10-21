@@ -134,12 +134,19 @@ window.Quarto = {
 </header>
 
 
+<section id="introducción" class="level1">
+<h1>Introducción</h1>
+<p>En este documento se presentan los seis problemas de Teoría de la Decisión bajo Incertidumbre elaborados por los integrantes del grupo, junto con sus correspondientes resoluciones.</p>
+<p>Para resolverlos se utilizan las funciones de R proporcionadas en la asignatura, aplicando los criterios de decisión bajo incertidumbre estudiados.</p>
+<p>En los primeros problemas de cada integrante se analizan situaciones favorables (beneficios) y desfavorables (costes), aplicando individualmente los criterios correspondientes. En los segundos problemas se utiliza la función <code>criterio.Todos()</code> para obtener los resultados de los distintos criterios en una única tabla.</p>
+<p>Además, se incluyen las interpretaciones de los resultados y las justificaciones de las afirmaciones de verdadero o falso planteadas en los enunciados.</p>
 <section id="configuración-inicial" class="level2">
 <h2 class="anchored" data-anchor-id="configuración-inicial">Configuración inicial</h2>
 <p>Primero, cargo las funciones del repositorio del profesor para poder utilizarlas.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"teoriadecision_funciones_incertidumbre.R"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
+</section>
 </section>
 <section id="problemas-de-miriam-moreno-tamayo" class="level1">
 <h1>PROBLEMAS DE MIRIAM MORENO TAMAYO</h1>
@@ -1453,7 +1460,7 @@ iAlt.Opt (Desfav.)               A1. Prescripción generalizada</code></pre>
 <li><p><strong>Verdadera.</strong> Los peores resultados de A1, A2, A3 y A4 son -80, 15, -10 y 10, respectivamente. Wald favorable selecciona A2, con 15.</p></li>
 <li><p><strong>Falsa.</strong> Según el criterio de Savage en situación favorable, la alternativa A2 tiene una pérdida de 30 millones, mientras que A3 tiene una pérdida de 25 millones. Por lo tanto, A3 es la seleccionada.</p></li>
 <li><p><strong>Falsa.</strong> Según el criterio del Punto Ideal en situación favorable, A2 tiene un valor de 30,41 millones, mientras que A3 tiene una de 29,15 millones. Por lo tanto, A3 es la seleccionada.</p></li>
-<li><p><strong>Verdadera.</strong> Wald desfavorable minimiza el máximo valor de cada fila. Los máximos son 50, 20, 35 y 10, por lo que selecciona A4.</p></li>
+<li><p><strong>Verdadera.</strong> Wald desfavorable minimiza el máximo valor de cada row. Los máximos son 50, 20, 35 y 10, por lo que selecciona A4.</p></li>
 </ol>
 </section>
 <section id="respuestas-verdaderas-3" class="level2">
@@ -1462,8 +1469,8 @@ iAlt.Opt (Desfav.)               A1. Prescripción generalizada</code></pre>
 <hr>
 </section>
 </section>
-<section id="problemas-de-eduardo-llovet-rojas" class="level1">
-<h1>PROBLEMAS DE EDUARDO LLOVET ROJAS</h1>
+<section id="problemas-de-eduardo-llovet-rodríguez" class="level1">
+<h1>PROBLEMAS DE EDUARDO LLOVET RODRÍGUEZ</h1>
 </section>
 <section id="problema-5-el-club-de-pádel-en-sevilla" class="level1">
 <h1><em>Problema 5: El club de pádel en Sevilla</em></h1>
