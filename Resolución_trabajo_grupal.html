@@ -74,7 +74,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="Resolución_trabajo_grupal_files/libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="Resolución_trabajo_grupal_files/libs/bootstrap/bootstrap.min.js"></script>
 <link href="Resolución_trabajo_grupal_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="Resolución_trabajo_grupal_files/libs/bootstrap/bootstrap-917079515d91bccb85b543faf8aa8bb6.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="Resolución_trabajo_grupal_files/libs/bootstrap/bootstrap-215b371544c282197b31c8aa00ce3677.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
@@ -134,12 +134,19 @@ window.Quarto = {
 </header>
 
 
+<section id="introducción" class="level1">
+<h1>Introducción</h1>
+<p>En este documento se presentan los seis problemas de Teoría de la Decisión bajo Incertidumbre elaborados por los integrantes del grupo, junto con sus correspondientes resoluciones.</p>
+<p>Para resolverlos se utilizan las funciones de R proporcionadas en la asignatura, aplicando los criterios de decisión bajo incertidumbre estudiados.</p>
+<p>En los primeros problemas de cada integrante se analizan situaciones favorables (beneficios) y desfavorables (costes), aplicando individualmente los criterios correspondientes. En los segundos problemas se utiliza la función <code>criterio.Todos()</code> para obtener los resultados de los distintos criterios en una única tabla.</p>
+<p>Además, se incluyen las interpretaciones de los resultados y las justificaciones de las afirmaciones de verdadero o falso planteadas en los enunciados.</p>
 <section id="configuración-inicial" class="level2">
 <h2 class="anchored" data-anchor-id="configuración-inicial">Configuración inicial</h2>
 <p>Primero, cargo las funciones del repositorio del profesor para poder utilizarlas.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"teoriadecision_funciones_incertidumbre.R"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
+</section>
 </section>
 <section id="problemas-de-miriam-moreno-tamayo" class="level1">
 <h1>PROBLEMAS DE MIRIAM MORENO TAMAYO</h1>
@@ -920,8 +927,8 @@ $ValorOptimo
 [1] 7.333333
 
 $AlternativaOptima
-A1. La Odisea 
-            1 </code></pre>
+    A1. La Odisea A2. La bola negra 
+                1                 2 </code></pre>
 </div>
 </div>
 <p><strong>Criterio del Punto Ideal</strong></p>
@@ -1485,10 +1492,10 @@ iAlt.Opt (Desfav.)               A1. Prescripción generalizada</code></pre>
 <p>La matriz de beneficios estimada por el club para la temporada es la siguiente:</p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 25%">
-<col style="width: 25%">
-<col style="width: 25%">
-<col style="width: 25%">
+<col style="width: 36%">
+<col style="width: 20%">
+<col style="width: 22%">
+<col style="width: 20%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -1928,15 +1935,15 @@ A2 (Regional)
 <section id="cuestionario-verdaderofalso-problema-5" class="level2">
 <h2 class="anchored" data-anchor-id="cuestionario-verdaderofalso-problema-5"><strong>Cuestionario Verdadero/Falso (Problema 5):</strong></h2>
 <p><strong>1.</strong> En situación favorable, el criterio de Wald recomienda la alternativa de organizar un Torneo Nacional (<span class="math inline">\(A_3\)</span>).</p>
-<p><strong>Respuesta:</strong> FALSO. <em>(Justificación: El criterio de Wald busca el máximo de los mínimos. Los mínimos de beneficios para cada alternativa son 40, 10, -20 y 45. El máximo de esos valores es 45, por lo que selecciona <span class="math inline">\(A_4\)</span> (Alquiler Normal)).</em></p>
+<p><strong>Respuesta:</strong> FALSO. <em>(Justificación: El criterio de Wald busca el máximo de los mínimos. Los mínimos de beneficios para cada alternativa son 40, 10, -20 y 45. El máximo de esos valores es 45, por lo que selecciona</em> <span class="math inline">\(A_4\)</span> (Alquiler Normal)).</p>
 <p><strong>2.</strong> Aplicando el criterio de Laplace en situación favorable, la mejor decisión es organizar un Torneo Local (<span class="math inline">\(A_1\)</span>).</p>
-<p><strong>Respuesta:</strong> VERDADERO. <em>(Justificación: Laplace calcula la media de cada fila. La media de <span class="math inline">\(A_1\)</span> es 56,66, que es superior a la del resto de alternativas, por lo que se selecciona).</em></p>
+<p><strong>Respuesta:</strong> VERDADERO. <em>(Justificación: Laplace calcula la media de cada fila. La media de</em> <span class="math inline">\(A_1\)</span> es 56,66, que es superior a la del resto de alternativas, por lo que se selecciona).</p>
 <p><strong>3.</strong> Si consideramos la matriz como una situación desfavorable (matriz de costes), el criterio Optimista seleccionaría la alternativa <span class="math inline">\(A_2\)</span>.</p>
-<p><strong>Respuesta:</strong> FALSO. <em>(Justificación: En situación desfavorable, el criterio optimista busca el valor mínimo absoluto de la matriz, que es -20. Por lo tanto, seleccionaría la alternativa <span class="math inline">\(A_3\)</span>).</em></p>
+<p><strong>Respuesta:</strong> FALSO. <em>(Justificación: En situación desfavorable, el criterio optimista busca el valor mínimo absoluto de la matriz, que es -20. Por lo tanto, seleccionaría la alternativa</em> <span class="math inline">\(A_3\)</span>).</p>
 <p><strong>4.</strong> En situación favorable, el criterio de Savage (minimax arrepentimiento) selecciona la alternativa del Torneo Regional (<span class="math inline">\(A_2\)</span>).</p>
-<p><strong>Respuesta:</strong> VERDADERO. <em>(Justificación: Savage calcula la matriz de pesares. El máximo pesar de <span class="math inline">\(A_2\)</span> es 35, que es el valor mínimo entre los pesares máximos de todas las alternativas).</em></p>
+<p><strong>Respuesta:</strong> VERDADERO. <em>(Justificación: Savage calcula la matriz de pesares. El máximo pesar de</em> <span class="math inline">\(A_2\)</span> es 35, que es el valor mínimo entre los pesares máximos de todas las alternativas).</p>
 <p><strong>5.</strong> Para un coeficiente de optimismo <span class="math inline">\(\alpha = 0.4\)</span>, el criterio de Hurwicz en situación favorable escoge la alternativa <span class="math inline">\(A_4\)</span>.</p>
-<p><strong>Respuesta:</strong> FALSO. <em>(Justificación: Al aplicar la fórmula para <span class="math inline">\(A_1\)</span> obtenemos <span class="math inline">\((0.4 \times 70) + (0.6 \times 40) = 52\)</span>. Para <span class="math inline">\(A_4\)</span> el valor es 45. Por tanto, selecciona <span class="math inline">\(A_1\)</span>).</em></p>
+<p><strong>Respuesta:</strong> FALSO. <em>(Justificación: Al aplicar la fórmula para</em> <span class="math inline">\(A_1\)</span> obtenemos <span class="math inline">\((0.4 \times 70) + (0.6 \times 40) = 52\)</span>. Para <span class="math inline">\(A_4\)</span> el valor es 45. Por tanto, selecciona <span class="math inline">\(A_1\)</span>).</p>
 </section>
 <section id="respuestas-verdaderas-4" class="level2">
 <h2 class="anchored" data-anchor-id="respuestas-verdaderas-4">Respuestas verdaderas</h2>
@@ -1963,12 +1970,6 @@ A2 (Regional)
 </ul>
 <p>La matriz de beneficios esperados es la siguiente:</p>
 <table class="caption-top table">
-<colgroup>
-<col style="width: 25%">
-<col style="width: 25%">
-<col style="width: 25%">
-<col style="width: 25%">
-</colgroup>
 <thead>
 <tr class="header">
 <th>Alternativas</th>
@@ -2062,15 +2063,15 @@ iAlt.Opt (fav.)  A2 (Stock Medio) A2 (Stock Medio) A2 (Stock Medio)</code></pre>
 <section id="cuestionario-verdaderofalso-problema-6" class="level2">
 <h2 class="anchored" data-anchor-id="cuestionario-verdaderofalso-problema-6"><strong>Cuestionario Verdadero/Falso (Problema 6):</strong></h2>
 <p><strong>1.</strong> Según el criterio de Wald (pesimista), la alternativa óptima es comprar un stock bajo (<span class="math inline">\(A_3\)</span>), garantizando el mayor beneficio en el peor de los casos.</p>
-<p><strong>Respuesta:</strong> VERDADERO. <em>(Justificación: Los peores resultados (mínimos) de cada alternativa son -20, 10, 30 y -40. Wald maximiza este valor, seleccionando 30, que corresponde a <span class="math inline">\(A_3\)</span>).</em></p>
+<p><strong>Respuesta:</strong> VERDADERO. <em>(Justificación: Los peores resultados (mínimos) de cada alternativa son -20, 10, 30 y -40. Wald maximiza este valor, seleccionando 30, que corresponde a</em> <span class="math inline">\(A_3\)</span>).</p>
 <p><strong>2.</strong> El criterio de Savage (minimax arrepentimiento) recomienda arriesgar e invertir en un stock alto de vehículos híbridos (<span class="math inline">\(A_1\)</span>).</p>
-<p><strong>Respuesta:</strong> FALSO. <em>(Justificación: Al calcular los pesares máximos, <span class="math inline">\(A_2\)</span> presenta el menor arrepentimiento posible (40), por lo que Savage selecciona <span class="math inline">\(A_2\)</span>, no <span class="math inline">\(A_1\)</span>).</em></p>
+<p><strong>Respuesta:</strong> FALSO. <em>(Justificación: Al calcular los pesares máximos,</em> <span class="math inline">\(A_2\)</span> presenta el menor arrepentimiento posible (40), por lo que Savage selecciona <span class="math inline">\(A_2\)</span>, no <span class="math inline">\(A_1\)</span>).</p>
 <p><strong>3.</strong> El criterio Optimista selecciona la alternativa de importar únicamente vehículos eléctricos (<span class="math inline">\(A_4\)</span>).</p>
-<p><strong>Respuesta:</strong> FALSO. <em>(Justificación: El criterio optimista busca el valor más alto de la matriz, que es 120 (perteneciente a la alternativa <span class="math inline">\(A_1\)</span>)).</em></p>
+<p><strong>Respuesta:</strong> FALSO. <em>(Justificación: El criterio optimista busca el valor más alto de la matriz, que es 120 (perteneciente a la alternativa</em> <span class="math inline">\(A_1\)</span>)).</p>
 <p><strong>4.</strong> Aplicando el criterio de Laplace, la decisión óptima para el concesionario es comprar un stock medio (<span class="math inline">\(A_2\)</span>).</p>
-<p><strong>Respuesta:</strong> VERDADERO. <em>(Justificación: <span class="math inline">\(A_2\)</span> tiene el mayor beneficio promedio esperado (53,33 miles de euros) asumiendo estados equiprobables).</em></p>
+<p><strong>Respuesta:</strong> VERDADERO. <em>(Justificación:</em> <span class="math inline">\(A_2\)</span> tiene el mayor beneficio promedio esperado (53,33 miles de euros) asumiendo estados equiprobables).</p>
 <p><strong>5.</strong> Si asumimos un coeficiente de optimismo <span class="math inline">\(\alpha = 0.5\)</span>, el método de Hurwicz coincide con el método Optimista y selecciona la alternativa <span class="math inline">\(A_1\)</span>.</p>
-<p><strong>Respuesta:</strong> VERDADERO. <em>(Justificación: El cálculo para <span class="math inline">\(A_1\)</span> arroja un resultado ponderado de 50 (máximo de todas las alternativas), seleccionándola como ganadora al igual que lo hace el criterio optimista puro).</em></p>
+<p><strong>Respuesta:</strong> VERDADERO. <em>(Justificación: El cálculo para</em> <span class="math inline">\(A_1\)</span> arroja un resultado ponderado de 50 (máximo de todas las alternativas), seleccionándola como ganadora al igual que lo hace el criterio optimista puro).</p>
 </section>
 <section id="respuestas-verdaderas-5" class="level2">
 <h2 class="anchored" data-anchor-id="respuestas-verdaderas-5">Respuestas verdaderas</h2>
